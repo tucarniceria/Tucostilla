@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carnicería en línea</title>
+    <style>
+        /* Estilos Generales */
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-image: url('img/fondo.jpg');
+            background-size: cover;
+            background-attachment: fixed;
+            color: #333;
+        }
+        
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(255, 255, 255, 0.88);
+            z-index: -1;
+        }
+
+        h2, h3 {
+            color: #cc0000;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+        }
+
+        button {
+            background-color: #cc0000;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            margin: 10px 0;
+            transition: all 0.3s;
+            font-weight: bold;
+        }
+
+        button:hover {
+            background-color: #a50000;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border-radius: 6px;
+            border: 1px solid #ddd;
+            box-sizing: border-box;
+        }
+
+        /* Productos */
+        .product-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 25px;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .product {
+            width: 280px;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .product:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+        }
+
+        .product-img-container {
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .product img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .product:hover img {
+            transform: scale(1.05);
+        }
+
+        .product-info {
+            padding: 15px;
+        }
+
+        .product h4 {
+            color: #cc0000;
+            margin: 0 0 10px;
+            font-size: 1.3em;
+        }
+
+        .product-price {
+            font-weight: bold;
+            font-size: 1.1em;
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        .cantidad-input {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 12px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+        }
+
+        /* Carrito */
+        #carrito {
+            position: fixed;
+            top: 20px;
+            right: -350px;
+            width: 320px;
+            background: rgba(255, 255, 255, 0.98);
+            border-radius: 12px;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.15);
+            padding: 20px;
+            transition: right 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+            z-index: 1000;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+
+        #carrito.visible {
+            right: 20px;
+        }
+
+        #listaCarrito {
+            max-height: 300px;
+            overflow-y: auto;
+            padding: 0;
+            list-style: none;
+        }
+
+        #listaCarrito li {
+            padding: 8px 0;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .delete-btn {
+            color: #ff4444;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        /* Botón del Carrito */
+        #carrito-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background-color: #cc0000;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            font-size: 24px;
+            cursor: pointer;
+            z-index: 999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            transition: all 0.3s;
+        }
+
+        #carrito-toggle:hover {
+            transform: scale(1.1);
+            background-color: #a50000;
+        }
+
+        #cart-count {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background: #ffcc00;
+            color: #333;
+            border-radius: 50%;
+            width: 25px;
+            height: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        /* Formulario */
+        #formularioFinalizarPedido {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(255, 255, 255, 0.98);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 5px 30px rgba(0,0,0,0.2);
+            z-index: 1001;
+            width: 90%;
+            max-width: 400px;
+        }
+
+        /* Notificaciones */
+        .notification {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #4CAF50;
+            color: white;
+            padding: 15px 25px;
+            border-radius: 5px;
+            z-index: 1000;
+            animation: fadeInOut 2.5s ease-in-out;
+        }
+
+        @keyframes fadeInOut {
+            0% { opacity: 0; transform: translateY(20px); }
+            1% { opacity: 1; transform: translateY(0); }
+            90% { opacity: 1; transform: translateY(0); }
+            100% { opacity: 0; transform: translateY(20px); }
+        }
+
+        /* Descuentos */
+        .discount-applied {
+            color: #4caf50;
+            font-weight: bold;
+            margin: 5px 0;
+            display: none;
+        }
+
+        /* Sección de Recomendación */
+        #recomendacionSection {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            max-width: 500px;
+            margin: 20px auto;
+            text-align: center;
+            border: 2px dashed #cc0000;
+            display: none;
+        }
+
+        #codigoRecomendacionCliente {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #cc0000;
+            margin: 15px 0;
+            padding: 10px;
+            background: #f9f9f9;
+            border-radius: 8px;
+            display: inline-block;
+        }
+
+        #copyCodeBtn {
+            background-color: #4CAF50;
+            margin-left: 10px;
+        }
+
+        #copyCodeBtn:hover {
+            background-color: #3e8e41;
+        }
+
+        /* Publicidad Transitoria */
+        .ad-banner {
+            background: linear-gradient(90deg, #cc0000, #ff6b6b);
+            color: white;
+            padding: 15px;
+            text-align: center;
+            border-radius: 8px;
+            margin: 20px auto;
+            max-width: 600px;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+            100% { transform: scale(1); }
+        }
+
+        /* Confirmación de Envío */
+        #confirmacionEnvio {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.2);
+            z-index: 1002;
+            text-align: center;
+            max-width: 500px;
+            width: 90%;
+        }
+        
+        #confirmacionEnvio h3 {
+            color: #cc0000;
+            margin-top: 0;
+        }
+        
+        #confirmarBtn {
+            background: #4CAF50;
+            margin-right: 10px;
+        }
+        
+        #cancelarBtn {
+            background: #f44336;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            #carrito {
+                width: 90%;
+                right: -100%;
+            }
+            
+            #carrito.visible {
+                right: 5%;
+            }
+            
+            #carrito-toggle {
+                width: 50px;
+                height: 50px;
+                font-size: 20px;
+            }
+            
+            .product {
+                width: 100%;
+                max-width: 350px;
+            }
+            
+            #formularioFinalizarPedido {
+                width: 85%;
+                padding: 20px;
+            }
+
+            #confirmacionEnvio {
+                width: 80%;
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="main-container">
+        <h2>🐖 Carnicería en línea</h2>
+        <p>La mejor carne y al mejor precio</p>
+
+        <!-- Sección de Recomendación (Arriba) -->
+        <div id="recomendacionSection">
+            <h3>¡Recomienda y gana! 💰</h3>
+            <div class="ad-banner">
+                <p>🔔 <strong>Recomienda y gana:</strong> Comparte tu código con familiares y amigos y gana comisión por cada compra de tus recomendados.</p>
+            </div>
+            <p>Tu código de recomendación:</p>
+            <div>
+                <span id="codigoRecomendacionCliente"></span>
+                <button id="copyCodeBtn" onclick="copiarCodigo()">Copiar</button>
+            </div>
+            <p>Comparte tu codigo y obtendras tu comision por cada referido <strong>1% de comision</strong>.</p>
+        </div>
+
+        <!-- Productos -->
+        <div class="product-list">
+            <!-- Costilla -->
+            <div class="product">
+                <div class="product-img-container">
+                    <img src="img/costilla.jpg" alt="Costilla de cerdo premium">
+                </div>
+                <div class="product-info">
+                    <h4>Costilla Premium</h4>
+                    <p class="product-price">$15.000/libra</p>
+                    <input type="number" id="cantidadCostilla" class="cantidad-input" placeholder="Cantidad (lb)" min="1" step="0.5">
+                    <button onclick="agregarAlCarrito('Costilla Premium', 15000, 'cantidadCostilla')">Agregar al Carrito</button>
+                </div>
+            </div>
+
+            <!-- Chicharrón -->
+            <div class="product">
+                <div class="product-img-container">
+                    <img src="img/chicharron.jpg" alt="Chicharrón artesanal">
+                </div>
+                <div class="product-info">
+                    <h4>Chicharrón Artesanal</h4>
+                    <p class="product-price">$12.000/libra</p>
+                    <input type="number" id="cantidadChicharron" class="cantidad-input" placeholder="Cantidad (lb)" min="1" step="0.5">
+                    <button onclick="agregarAlCarrito('Chicharrón Artesanal', 12000, 'cantidadChicharron')">Agregar al Carrito</button>
+                </div>
+            </div>
+
+            <!-- Carne -->
+            <div class="product">
+                <div class="product-img-container">
+                    <img src="img/carne.jpg" alt="Carne de cerdo selecta">
+                </div>
+                <div class="product-info">
+                    <h4>Carne Selecta</h4>
+                    <p class="product-price">$20.000/libra</p>
+                    <input type="number" id="cantidadCarne" class="cantidad-input" placeholder="Cantidad (lb)" min="1" step="0.5">
+                    <button onclick="agregarAlCarrito('Carne Selecta', 20000, 'cantidadCarne')">Agregar al Carrito</button>
+                </div>
+            </div>
+
+            <!-- Lomo -->
+            <div class="product">
+                <div class="product-img-container">
+                    <img src="img/lomo.jpg" alt="Lomo de cerdo premium">
+                </div>
+                <div class="product-info">
+                    <h4>Lomo Premium</h4>
+                    <p class="product-price">$25.000/libra</p>
+                    <input type="number" id="cantidadLomo" class="cantidad-input" placeholder="Cantidad (lb)" min="1" step="0.5">
+                    <button onclick="agregarAlCarrito('Lomo Premium', 25000, 'cantidadLomo')">Agregar al Carrito</button>
+                </div>
+            </div>
+
+            <!-- Pesuña -->
+            <div class="product">
+                <div class="product-img-container">
+                    <img src="img/pesuna.jpg" alt="Pesuña de cerdo especial">
+                </div>
+                <div class="product-info">
+                    <h4>Pesuña Especial</h4>
+                    <p class="product-price">$10.000/libra</p>
+                    <input type="number" id="cantidadPesuna" class="cantidad-input" placeholder="Cantidad (lb)" min="1" step="0.5">
+                    <button onclick="agregarAlCarrito('Pesuña Especial', 10000, 'cantidadPesuna')">Agregar al Carrito</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Formulario -->
+        <div id="formularioFinalizarPedido">
+            <h3>📋 Completa tu pedido</h3>
+            <form id="formularioPedido">
+                <label for="nombre">Nombre completo:</label>
+                <input type="text" id="nombre" name="nombre" required minlength="3">
+                
+                <label for="telefono">Teléfono de contacto:</label>
+                <input type="tel" id="telefono" name="telefono" required>
+                
+                <label for="codigoRecomendacion">Código de comision (opcional):</label>
+                <input type="text" id="codigoRecomendacion" name="codigoRecomendacion">
+                
+                <button type="submit">Finalizar Pedido</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Carrito de Compras -->
+    <div id="carrito">
+        <h3>🛒 Tu Carrito <span id="cart-count"></span></h3>
+        <ul id="listaCarrito">
+            <li class="empty-cart">El carrito está vacío</li>
+        </ul>
+        <p id="descuentoAplicado" class="discount-applied" style="display:none;"></p>
+        <p><strong>Total: $<span id="totalCarrito">0</span></strong></p>
+        <button onclick="finalizarPedido()">Finalizar Pedido</button>
+    </div>
+
+    <!-- Botón Toggle Carrito -->
+    <button id="carrito-toggle" title="Ver carrito">
+        🛒
+    </button>
+
+    <!-- Confirmación de Envío -->
+    <div id="confirmacionEnvio">
+        <h3>⚠️ Confirmar envío del pedido</h3>
+        <p>¿Estás seguro de enviar este pedido por WhatsApp?</p>
+        <p><strong>Recomienda y gana:</strong> Comparte tu código con amigos para obtener descuentos.</p>
+        <button id="confirmarBtn">✅ Sí, enviar</button>
+        <button id="cancelarBtn">❌ Cancelar</button>
+    </div>
+
+    <script>
+        // Variables globales
+        let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+        let total = 0;
+        let descuentoAplicado = false;
+        let carritoVisible = false;
+        let codigoRecomendacionActual = "";
+        let mensajeWhatsApp = "";
+
+        // Inicialización
+        document.addEventListener('DOMContentLoaded', function() {
+            actualizarCarrito();
+            document.getElementById('carrito-toggle').addEventListener('click', toggleCarrito);
+            
+            // Eventos para los botones de confirmación
+            document.getElementById("confirmarBtn").addEventListener("click", confirmarEnvio);
+            document.getElementById("cancelarBtn").addEventListener("click", cancelarEnvio);
+        });
+
+        // Función para generar código de recomendación personalizado completo
+        function generarCodigoRecomendacion(nombre, telefono) {
+            // Obtener primera letra del nombre (en mayúscula)
+            const primeraLetra = nombre.trim().charAt(0).toUpperCase();
+            
+            // Limpiar teléfono (solo números)
+            const telefonoLimpio = telefono.replace(/\D/g, '');
+            
+            // Validar que tengamos los datos necesarios
+            if (!primeraLetra || telefonoLimpio.length < 8) {
+                mostrarNotificacion("No se pudo generar código personalizado. Usando código genérico.");
+                return "CARNE-" + Math.floor(1000 + Math.random() * 9000);
+            }
+            
+            return `${primeraLetra}-${telefonoLimpio}`;
+        }
+
+        // Función para copiar el código
+        function copiarCodigo() {
+            if (!codigoRecomendacionActual) {
+                mostrarNotificacion("No hay código para copiar");
+                return;
+            }
+            
+            navigator.clipboard.writeText(codigoRecomendacionActual).then(() => {
+                mostrarNotificacion("¡Código copiado! Pégalo para compartirlo.");
+            }).catch(err => {
+                console.error("Error al copiar: ", err);
+                mostrarNotificacion("Error al copiar el código");
+            });
+        }
+
+        // Funciones del Carrito
+        function agregarAlCarrito(nombre, precio, inputId) {
+            const cantidadInput = document.getElementById(inputId);
+            const cantidad = parseFloat(cantidadInput.value);
+            
+            if (!cantidad || cantidad <= 0) {
+                mostrarNotificacion("Por favor ingresa una cantidad válida");
+                return;
+            }
+
+            const itemExistente = carrito.find(item => item.nombre === nombre);
+            if (itemExistente) {
+                itemExistente.cantidad += cantidad;
+            } else {
+                carrito.push({ nombre, precio, cantidad });
+            }
+
+            cantidadInput.value = '';
+            guardarCarrito();
+            actualizarCarrito();
+            mostrarNotificacion(`${nombre} agregado al carrito`);
+            mostrarCarrito();
+        }
+
+        function eliminarDelCarrito(index) {
+            const item = carrito[index];
+            carrito.splice(index, 1);
+            guardarCarrito();
+            actualizarCarrito();
+            mostrarNotificacion(`${item.nombre} eliminado`);
+            if (carrito.length === 0) {
+                ocultarCarrito();
+            }
+        }
+
+        function actualizarCarrito() {
+            const lista = document.getElementById("listaCarrito");
+            const totalElement = document.getElementById("totalCarrito");
+            const descuentoElement = document.getElementById("descuentoAplicado");
+            
+            lista.innerHTML = '';
+            total = 0;
+
+            if (carrito.length === 0) {
+                lista.innerHTML = '<li class="empty-cart">El carrito está vacío</li>';
+            } else {
+                carrito.forEach((item, index) => {
+                    const li = document.createElement("li");
+                    li.innerHTML = `
+                        ${item.nombre} - ${item.cantidad} lb - $${(item.precio * item.cantidad).toLocaleString()}
+                        <button class="delete-btn" onclick="eliminarDelCarrito(${index})">✕</button>
+                    `;
+                    lista.appendChild(li);
+                    total += item.precio * item.cantidad;
+                });
+            }
+
+            // Aplicar descuento (acepta "DESCUENTO10" o códigos que empiecen con "CARNE-")
+            const codigo = document.getElementById("codigoRecomendacion").value;
+            if (codigo === "DESCUENTO10" || codigo.startsWith("CARNE-")) {
+                total = total * 0.9;
+                descuentoElement.style.display = "block";
+                descuentoElement.textContent = "¡Descuento 1% aplicado!";
+                descuentoAplicado = true;
+            } else {
+                descuentoElement.style.display = "none";
+                descuentoAplicado = false;
+            }
+
+            totalElement.textContent = total.toLocaleString();
+            document.getElementById("cart-count").textContent = carrito.length > 0 ? carrito.length : '';
+        }
+
+        function guardarCarrito() {
+            localStorage.setItem('carrito', JSON.stringify(carrito));
+        }
+
+        function mostrarNotificacion(mensaje) {
+            const notificacion = document.createElement("div");
+            notificacion.className = "notification";
+            notificacion.textContent = mensaje;
+            document.body.appendChild(notificacion);
+            
+            setTimeout(() => {
+                notificacion.remove();
+            }, 2500);
+        }
+
+        function toggleCarrito() {
+            carritoVisible = !carritoVisible;
+            if (carritoVisible) {
+                mostrarCarrito();
+            } else {
+                ocultarCarrito();
+            }
+        }
+
+        function mostrarCarrito() {
+            if (carrito.length > 0) {
+                document.getElementById('carrito').classList.add('visible');
+                carritoVisible = true;
+                document.getElementById('carrito-toggle').textContent = '✕';
+            }
+        }
+
+        function ocultarCarrito() {
+            document.getElementById('carrito').classList.remove('visible');
+            carritoVisible = false;
+            document.getElementById('carrito-toggle').textContent = '🛒';
+        }
+
+        function finalizarPedido() {
+            if (carrito.length === 0) {
+                mostrarNotificacion("Agrega productos al carrito primero");
+                return;
+            }
+            document.getElementById("formularioFinalizarPedido").style.display = "block";
+        }
+
+        // Procesar formulario y mostrar confirmación
+        document.getElementById("formularioPedido").addEventListener("submit", function(e) {
+            e.preventDefault();
+
+            const nombre = document.getElementById("nombre").value;
+            const telefono = document.getElementById("telefono").value;
+            const telefonoLimpio = telefono.replace(/\D/g, '');
+            
+            if (nombre.length < 3) {
+                mostrarNotificacion("Nombre debe tener al menos 3 caracteres");
+                return;
+            }
+
+            if (telefonoLimpio.length < 8) {
+                mostrarNotificacion("Teléfono no válido (mínimo 8 dígitos)");
+                return;
+            }
+
+            // Generar código de recomendación PERSONALIZADO COMPLETO
+            codigoRecomendacionActual = generarCodigoRecomendacion(nombre, telefono);
+            
+            // Mostrar sección de recomendación
+            document.getElementById("recomendacionSection").style.display = "block";
+            document.getElementById("codigoRecomendacionCliente").textContent = codigoRecomendacionActual;
+
+            // Construir mensaje para WhatsApp
+            mensajeWhatsApp = `*NUEVO PEDIDO*%0A%0A`;
+            mensajeWhatsApp += `*Cliente:* ${nombre}%0A`;
+            mensajeWhatsApp += `*Teléfono:* ${telefono}%0A%0A`;
+            mensajeWhatsApp += `*Productos:*%0A`;
+            
+            carrito.forEach(item => {
+                mensajeWhatsApp += `- ${item.nombre} (${item.cantidad} lb): $${(item.precio * item.cantidad).toLocaleString()}%0A`;
+            });
+            
+            mensajeWhatsApp += `%0A*Total:* $${total.toLocaleString()}`;
+            
+            if (descuentoAplicado) {
+                mensajeWhatsApp += `%0A*Incluye 1% de comision*`;
+            }
+            
+            mensajeWhatsApp += `%0A%0A*Código Cliente:* ${codigoRecomendacionActual}`;
+
+            // Mostrar confirmación
+            document.getElementById("confirmacionEnvio").style.display = "block";
+        });
+
+        function confirmarEnvio() {
+            // Abrir WhatsApp
+            const numeroWhatsApp = "573246453591"; // Reemplaza con tu número
+            window.open(`https://wa.me/${numeroWhatsApp}?text=${mensajeWhatsApp}`, "_blank");
+            
+            // Limpiar y cerrar todo
+            carrito = [];
+            localStorage.removeItem('carrito');
+            actualizarCarrito();
+            ocultarCarrito();
+            document.getElementById("formularioFinalizarPedido").style.display = "none";
+            document.getElementById("confirmacionEnvio").style.display = "none";
+            document.getElementById("formularioPedido").reset();
+            
+            mostrarNotificacion("¡Pedido enviado con éxito!");
+        }
+
+        function cancelarEnvio() {
+            document.getElementById("confirmacionEnvio").style.display = "none";
+            mostrarNotificacion("Envío cancelado. Puedes modificar tu pedido.");
+        }
+
+        // Validar código en tiempo real
+        document.getElementById("codigoRecomendacion").addEventListener("input", function() {
+            actualizarCarrito();
+        });
+    </script>
+</body>
+</html>
