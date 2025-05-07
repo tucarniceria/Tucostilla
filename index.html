@@ -67,12 +67,9 @@
         }
 
         .product {
-            width: 220px;
-            background: rgba(255, 255, 255, 0.95);
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            transition: all 0.3s ease;
+            width: 140px; /* Ancho reducido (antes 280px) */
+  padding: 10px; /* Espacio interno opcional */
+  margin: 0 auto; /* Centra el producto */
         }
 
         .product:hover {
@@ -84,6 +81,9 @@
           height: 120px;
   width: 120px;
   margin: 0 auto;
+  overflow: hidden;
+  border-radius: 8px;
+  border: 1px solid #ddd; /* Borde para visualizar el marco */
         }
 
         .product img {
@@ -98,7 +98,8 @@
         }
 
         .product-info {
-            padding: 15px;
+           padding: 8px; /* Reduje el espacio interno */
+  text-align: center; /* Opcional: centra el texto */
         }
 
         .product h4 {
