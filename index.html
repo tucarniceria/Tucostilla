@@ -386,10 +386,39 @@ body::before {
                 width: 80%;
                 padding: 15px;
             }
+
+            /* Estilos para el anuncio */
+.anuncio-parpadeante {
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  background-color: #cc0000;
+  color: white;
+  padding: 10px 15px;
+  border-radius: 8px;
+  font-weight: bold;
+  font-size: 14px;
+  z-index: 1000;
+  box-shadow: 0 0 10px rgba(0,0,0,0.3);
+  
+  /* Animación de parpadeo */
+  animation: parpadeo 1.5s infinite;
+}
+
+@keyframes parpadeo {
+  0% { opacity: 1; }
+  50% { opacity: 0.5; transform: scale(0.98); }
+  100% { opacity: 1; }
+}
         }
     </style>
 </head>
+    
 <body>
+    <div class="anuncio-parpadeante">
+  🎉 ¡OFERTA ESPECIAL! 20% DE DESCUENTO EN LOMO HASTA HOY 🎉
+</div>
+    
     <div class="main-container">
         <h2>🐖 Carnicería en línea</h2>
         <p>La mejor carne y al mejor precio</p>
