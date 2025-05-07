@@ -27,6 +27,25 @@
             z-index: -1;
         }
 
+        body {
+  background-image: url('https://res.cloudinary.com/ddogfjbou/image/upload/v1746577507/costillas_fondo_spxgyv.jpg');
+  background-size: cover;       /* Cubre todo el espacio */
+  background-position: center;  /* Centra la imagen */
+  background-attachment: fixed; /* Efecto parallax (opcional) */
+  background-repeat: no-repeat; /* Evita que se repita */
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(255, 255, 255, 0.88); /* Capa blanca semitransparente */
+  z-index: -1;
+}
+
         h2, h3 {
             color: #cc0000;
             text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
