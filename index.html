@@ -420,6 +420,57 @@ body::before {
   background: linear-gradient(135deg, #cc0000, #a50000);
 }
         }
+             /* Añade esto al CSS existente (sin borrar lo anterior) */
+        
+        /* Ajustes específicos para la cuadrícula de productos */
+        .product-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 25px;
+            padding: 15px;
+            justify-items: center;
+        }
+        
+        .product {
+            width: 100%;
+            max-width: 280px;
+            margin: 0 auto;
+        }
+        
+        /* Responsive para móviles */
+        @media (max-width: 768px) {
+            .product-list {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+                gap: 15px;
+            }
+            
+            .product {
+                max-width: 150px;
+            }
+            
+            .product h4 {
+                font-size: 1.1em;
+            }
+            
+            .product-price {
+                font-size: 0.9em;
+            }
+            
+            button {
+                padding: 8px 12px;
+                font-size: 0.8em;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .product-list {
+                grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+            }
+            
+            .product {
+                max-width: 140px;
+            }
+        }
     </style>
 </head>
     
