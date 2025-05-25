@@ -927,46 +927,43 @@
             confirmationModal.style.display = 'none';
         });
 
-        confirmOrder.addEventListener('click', () => {
-            if (!customerName.value.trim() || !customerPhone.value.trim()) {
-                showNotification('Por favor completa los campos obligatorios');
-                return;
-            }
+       confirmOrder.addEventListener('click', () => {
+    if (!customerName.value.trim() || !customerPhone.value.trim()) {
+        showNotification('Por favor completa los campos obligatorios');
+        return;
+    }
 
-            let message = `*📋 NUEVO PEDIDO* 🚀\n\n`;
-            message += `*👤 Cliente:* ${customerName.value.trim()}\n`;
-            message += `*📞 Teléfono:* ${customerPhone.value.trim()}\n`;
-            
-            if (referralCode.value.trim()) {
-                message += `*🎟 Código Referido:* ${referralCode.value.trim()}\n`;
-            }
-            
-            message += `\n*🍖 PRODUCTOS:*\n`;
-            
-            cart.forEach(item => {
-                message += `✔ *${item.title}* \n   - Cantidad: ${item.quantity}\n   - Precio: $${item.price.toLocaleString()}\n
-            });
-            
-            const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-            message += `*💰 TOTAL A PAGAR:* $${total.toLocaleString()}\n\n`;
-            message += `*📌 Notas adicionales:* \n_En breve nos comunicaremos para confirmar su pedido_\n\n`;
-            message += `¡Gracias por preferir *PrimeMeat Premium*! 🎉`;
-            
-            const encodedMessage = encodeURIComponent(message);
-            const whatsappUrl = `https://wa.me/573246453591?text=${encodedMessage}`;
-            window.location.href = whatsappUrl;
-            
-            setTimeout(() => {
-                cart = [];
-                updateCart();
-                cartAI.classList.remove('open');
-                confirmationModal.style.display = 'none';
-                customerName.value = '';
-                customerPhone.value = '';
-                referralCode.value = '';
-            }, 1000);
-        });
-
+    // Formato simplificado del mensaje
+    let message = `*NUEVO PEDIDO*\n\n`;
+    message += `*Cliente:* ${customerName.value.trim()}\n`;
+    message += `*Teléfono:* ${customerPhone.value.trim()}\n\n`;
+    message += `*Productos:*\n`;
+    
+    cart.forEach(item => {
+        message += `- ${item.title} (${item.quantity} x $${item.price.toLocaleString()})\n`;
+    });
+    
+    const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+    message += `\n*Total:* $${total.toLocaleString()}\n\n`;
+    message += `¡Gracias por su pedido!`;
+    
+    const encodedMessage = encodeURIComponent(message);
+    const whatsappUrl = `https://wa.me/573246453591?text=${encodedMessage}`;
+    
+    // Abrir en nueva pestaña
+    window.open(whatsappUrl, '_blank');
+    
+    // Limpiar carrito y formulario
+    setTimeout(() => {
+        cart = [];
+        updateCart();
+        cartAI.classList.remove('open');
+        confirmationModal.style.display = 'none';
+        customerName.value = '';
+        customerPhone.value = '';
+        referralCode.value = '';
+    }, 1000);
+});
         function showNotification(message) {
             const notification = document.createElement('div');
             notification.className = 'notification';
