@@ -612,7 +612,32 @@
     
     </style>
 </head>
-        <section class="contact-section" id="contacto" style="padding: 5rem 2rem; background-color: var(--negro-elegante); color: white;">
+   
+</section>
+<a href="https://wa.me/573246453591" class="whatsapp-float" target="_blank" style="position: fixed; bottom: 30px; right: 30px; background-color: #25D366; color: white; width: 60px; height: 60px; border-radius: 50%; text-align: center; font-size: 30px; box-shadow: 0 5px 15px rgba(0,0,0,0.3); z-index: 100; display: flex; align-items: center; justify-content: center;">
+    <i class="fab fa-whatsapp"></i>
+</a>
+        
+<contacto>
+    <header class="header-4d">
+        <div class="nav-holografico">
+            <div class="logo-meat">
+                <i class="fas fa-bone"></i> PrimeMeat
+            </div>
+            <button class="mobile-menu-button" id="mobileMenuButton">
+                <i class="fas fa-bars"></i>
+            </button>
+            <nav class="smart-menu" id="smartMenu">
+                <a href="#cortes">Productos</a>
+                <a href="#paquetes">Paquetes</a>
+                <a href="#nosotros">Nosotros</a>
+                <a href="#contacto">Contacto</a>
+            </nav>
+            <button class="cart-button" id="cartButton">
+                <i class="fas fa-shopping-cart"></i>
+                <span class="cart-count">0</span>
+            </button>
+            <section class="contact-section" id="contacto" style="padding: 5rem 2rem; background-color: var(--negro-elegante); color: white;">
     <h2 class="section-title" style="color: white;">CONTÁCTANOS</h2>
     <div style="max-width: 800px; margin: 0 auto; text-align: center;">
         <div style="margin-bottom: 2rem;">
@@ -632,33 +657,10 @@
         <div>
             <i class="fas fa-map-marker-alt" style="font-size: 2rem; margin-bottom: 1rem;"></i>
             <h3 style="font-size: 1.5rem; margin-bottom: 0.5rem;">Dirección</h3>
-            <p style="font-size: 1.2rem;">Calle 123 #45-67, Bogotá, Colombia</p>
+            <p style="font-size: 1.2rem;">Niquia</p>
         </div>
     </div>
 </section>
-<a href="https://wa.me/573246453591" class="whatsapp-float" target="_blank" style="position: fixed; bottom: 30px; right: 30px; background-color: #25D366; color: white; width: 60px; height: 60px; border-radius: 50%; text-align: center; font-size: 30px; box-shadow: 0 5px 15px rgba(0,0,0,0.3); z-index: 100; display: flex; align-items: center; justify-content: center;">
-    <i class="fab fa-whatsapp"></i>
-</a>
-        
-<body>
-    <header class="header-4d">
-        <div class="nav-holografico">
-            <div class="logo-meat">
-                <i class="fas fa-bone"></i> PrimeMeat
-            </div>
-            <button class="mobile-menu-button" id="mobileMenuButton">
-                <i class="fas fa-bars"></i>
-            </button>
-            <nav class="smart-menu" id="smartMenu">
-                <a href="#cortes">Productos</a>
-                <a href="#paquetes">Paquetes</a>
-                <a href="#nosotros">Nosotros</a>
-                <a href="#contacto">Contacto</a>
-            </nav>
-            <button class="cart-button" id="cartButton">
-                <i class="fas fa-shopping-cart"></i>
-                <span class="cart-count">0</span>
-            </button>
         </div>
     </header>
 
@@ -999,7 +1001,7 @@
             const notification = document.createElement('div');
             notification.className = 'notification';
             notification.textContent = message;
-            document.body.appendChild(notification);
+            document.contacto.appendChild(notification);
             
             setTimeout(() => {
                 notification.remove();
