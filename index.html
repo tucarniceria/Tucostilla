@@ -439,31 +439,6 @@
             to { bottom: 2rem; opacity: 1; }
         }
         
-        /* WhatsApp Button */
-        .whatsapp-button {
-            position: fixed;
-            bottom: 2rem;
-            right: 2rem;
-            background: #25D366;
-            color: white;
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2rem;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-            z-index: 999;
-            transition: all 0.3s ease;
-            text-decoration: none;
-        }
-        
-        .whatsapp-button:hover {
-            transform: scale(1.1);
-            background: #128C7E;
-        }
-        
         /* Responsive */
         @media (max-width: 992px) {
             .hero-title {
@@ -529,14 +504,6 @@
             .cart-ai {
                 width: 100%;
                 max-width: none;
-            }
-            
-            .whatsapp-button {
-                width: 50px;
-                height: 50px;
-                font-size: 1.5rem;
-                bottom: 1rem;
-                right: 1rem;
             }
         }
         
@@ -774,11 +741,6 @@
         </div>
     </div>
 
-    <!-- Botón de WhatsApp -->
-    <a href="https://wa.me/573001234567?text=Hola%20PrimeMeat,%20quiero%20hacer%20un%20pedido" class="whatsapp-button" id="whatsappButton" target="_blank">
-        <i class="fab fa-whatsapp"></i>
-    </a>
-
     <script>
         // Carrito de compras
         let cart = [];
@@ -789,7 +751,6 @@
         const cartTotal = document.getElementById('cartTotal');
         const cartCount = document.querySelector('.cart-count');
         const checkoutButton = document.getElementById('checkoutButton');
-        const whatsappButton = document.getElementById('whatsappButton');
         
         // Menú móvil
         const mobileMenuButton = document.getElementById('mobileMenuButton');
@@ -886,15 +847,16 @@
             
             // Guardar en localStorage
             localStorage.setItem('cart', JSON.stringify(cart));
-            
-            // Actualizar enlace de WhatsApp
-            updateWhatsAppLink();
         }
         
-        // Actualizar enlace de WhatsApp con el pedido
-        function updateWhatsAppLink() {
-            if (cart.length === 0) return;
+        // Finalizar compra
+        checkoutButton.addEventListener('click', () => {
+            if (cart.length === 0) {
+                showNotification('Tu carrito está vacío');
+                return;
+            }
             
+            // Crear mensaje para WhatsApp
             let message = "Hola PrimeMeat, quiero hacer el siguiente pedido:\n\n";
             cart.forEach(item => {
                 message += `- ${item.title} (${item.quantity} x $${item.price.toLocaleString()}) = $${(item.price * item.quantity).toLocaleString()}\n`;
@@ -905,20 +867,12 @@
             
             // Codificar el mensaje para URL
             const encodedMessage = encodeURIComponent(message);
-            whatsappButton.href = `https://wa.me/573001234567?text=${encodedMessage}`;
-        }
-        
-        // Finalizar compra
-        checkoutButton.addEventListener('click', () => {
-            if (cart.length === 0) {
-                showNotification('Tu carrito está vacío');
-                return;
-            }
             
-            // Abrir WhatsApp con el pedido
-            window.open(whatsappButton.href, '_blank');
+            // Redirigir a WhatsApp
+            const whatsappUrl = `https://wa.me/3246459142?text=${encodedMessage}`;
+            window.open(whatsappUrl, '_blank');
             
-            // Vaciar el carrito
+            // Limpiar carrito
             cart = [];
             updateCart();
             cartAI.classList.remove('open');
@@ -1013,3 +967,4 @@
     </script>
 </body>
 </html>
+
