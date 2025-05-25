@@ -850,7 +850,7 @@
         }
         
         // Finalizar compra
-        checkoutButton.addEventListener('click', () => {
+       checkoutButton.addEventListener('click', () => {
             if (cart.length === 0) {
                 showNotification('Tu carrito está vacío');
                 return;
@@ -865,18 +865,22 @@
             const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
             message += `\nTotal: $${total.toLocaleString()}\n\nGracias!`;
             
-            // Codificar el mensaje para URL
-            const encodedMessage = encodeURIComponent(message);
+            // Codificar el mensaje para URL (usando encodeURIComponent correctamente)
+            const encodedMessage = encodeURIComponent(message.trim());
             
-            // Redirigir a WhatsApp
-            const whatsappUrl = `https://wa.me/573246453591?text=${encodedMessage}`;
-            window.open(whatsappUrl, '_blank');
+            // Redirigir a WhatsApp (asegurando el formato correcto del número)
+            const whatsappUrl = `https://wa.me/573246459142?text=${encodedMessage}`;
             
-            // Limpiar carrito
-            cart = [];
-            updateCart();
-            cartAI.classList.remove('open');
+            // Abrir en la misma ventana (mejor para móviles)
+            window.location.href = whatsappUrl;
             
+            // Limpiar carrito después de un breve retraso
+            setTimeout(() => {
+                cart = [];
+                updateCart();
+                cartAI.classList.remove('open');
+            }, 1000);
+        });
             showNotification('Pedido enviado por WhatsApp');
         });
         
