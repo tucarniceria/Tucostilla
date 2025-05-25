@@ -3,849 +3,822 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Carnicería en línea</title>
+    <title>PrimeMeat | Carnicería Premium 4.0</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* Estilos Generales */
-        body {
-            font-family: 'Arial', sans-serif;
-            margin: 0;
-            padding: 20px;
-            background-image: url('https://res.cloudinary.com/ddogfjbou/image/upload/v1746577507/costillas_fondo_spxgyv.jpg');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-            background-repeat: no-repeat;
-            color: #333;
+        :root {
+            --rojo-carnicero: #c00;
+            --negro-elegante: #1a1a1a;
+            --blanco-hueso: #f9f5f0;
         }
         
-        body::before {
-            content: "";
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-color: rgba(255, 255, 255, 0.88);
-            z-index: -1;
-        }
-
-        h2, h3 {
-            color: #cc0000;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
-        }
-
-        button {
-            background-color: #cc0000;
-            color: white;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            margin: 10px 0;
-            transition: all 0.3s;
-            font-weight: bold;
-        }
-
-        button:hover {
-            background-color: #a50000;
-        }
-
-        input, textarea {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 15px;
-            border-radius: 6px;
-            border: 1px solid #ddd;
+        /* Reset 3D */
+        * {
+            margin: 0;
+            padding: 0;
             box-sizing: border-box;
+            font-family: 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
         }
-
-        /* Productos */
-        .product-list {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 25px;
-            padding: 15px;
-            justify-items: center;
-            margin-top: 20px;
+        
+        body {
+            background-color: var(--blanco-hueso);
+            color: var(--negro-elegante);
+            overflow-x: hidden;
         }
-
-        .product {
-            width: 100%;
-            max-width: 280px;
-            background: rgba(255, 255, 255, 0.95);
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            transition: all 0.3s ease;
+        
+        /* Header Cuántico */
+        .header-4d {
+            background: linear-gradient(135deg, var(--negro-elegante) 0%, var(--rojo-carnicero) 100%);
+            padding: 1rem;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .nav-holografico {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1400px;
             margin: 0 auto;
         }
-
-        .product:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+        
+        .logo-meat {
+            font-size: 2rem;
+            font-weight: 800;
+            background: linear-gradient(to right, #fff 0%, #ff9a9a 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: flex;
+            align-items: center;
         }
-
-        .product-img-container {
-            height: 200px;
+        
+        /* Menú con IA */
+        .smart-menu {
+            display: flex;
+            gap: 2rem;
+        }
+        
+        .smart-menu a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            position: relative;
+            padding: 0.5rem 0;
+        }
+        
+        .smart-menu a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 3px;
+            bottom: 0;
+            left: 0;
+            background-color: white;
+            transition: width 0.3s ease;
+        }
+        
+        .smart-menu a:hover::after {
+            width: 100%;
+        }
+        
+        /* Hero con Modelado 3D */
+        .hero-carnicero {
+            height: 80vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
             overflow: hidden;
         }
-
-        .product img {
+        
+        .hero-content {
+            z-index: 2;
+            text-align: center;
+            max-width: 800px;
+            padding: 2rem;
+        }
+        
+        .hero-title {
+            font-size: 4rem;
+            font-weight: 900;
+            color: white;
+            margin-bottom: 1rem;
+            text-shadow: 0 5px 15px rgba(0,0,0,0.5);
+        }
+        
+        .hero-subtitle {
+            font-size: 1.5rem;
+            color: rgba(255,255,255,0.9);
+            margin-bottom: 2rem;
+        }
+        
+        /* Productos con Realidad Aumentada */
+        .productos-section {
+            padding: 5rem 2rem;
+            background-color: white;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: var(--negro-elegante);
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 100px;
+            height: 5px;
+            background: var(--rojo-carnicero);
+            margin: 1rem auto 0;
+        }
+        
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .product-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            position: relative;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+        }
+        
+        .product-badge {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: var(--rojo-carnicero);
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            z-index: 2;
+        }
+        
+        .product-media {
+            height: 250px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .product-image {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.5s;
+            transition: transform 0.5s ease;
         }
-
-        .product:hover img {
-            transform: scale(1.05);
+        
+        .product-card:hover .product-image {
+            transform: scale(1.1);
         }
-
+        
+        .ar-button {
+            position: absolute;
+            bottom: 1rem;
+            right: 1rem;
+            background: rgba(0,0,0,0.7);
+            color: white;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 2;
+        }
+        
         .product-info {
-            padding: 15px;
+            padding: 1.5rem;
         }
-
-        .product h4 {
-            color: #cc0000;
-            margin: 0 0 10px;
-            font-size: 1.3em;
+        
+        .product-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: var(--negro-elegante);
         }
-
+        
+        .product-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+        
         .product-price {
-            font-weight: bold;
-            font-size: 1.1em;
-            color: #333;
-            margin-bottom: 15px;
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--rojo-carnicero);
         }
-
-        .cantidad-input {
-            width: 100%;
-            padding: 8px;
-            margin-bottom: 12px;
-            border: 1px solid #ddd;
-            border-radius: 6px;
+        
+        .product-actions {
+            display: flex;
+            gap: 0.5rem;
         }
-
-        /* Carrito */
-        #carrito {
+        
+        .add-to-cart {
+            background: var(--rojo-carnicero);
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            font-weight: 600;
+            cursor: pointer;
+            flex-grow: 1;
+            transition: all 0.3s ease;
+        }
+        
+        .add-to-cart:hover {
+            background: #a00;
+        }
+        
+        /* Carrito con IA */
+        .cart-ai {
             position: fixed;
-            top: 20px;
-            right: -350px;
-            width: 320px;
-            background: rgba(255, 255, 255, 0.98);
-            border-radius: 12px;
-            box-shadow: 0 5px 25px rgba(0,0,0,0.15);
-            padding: 20px;
+            top: 0;
+            right: -400px;
+            width: 400px;
+            height: 100vh;
+            background: white;
+            box-shadow: -5px 0 15px rgba(0,0,0,0.1);
             transition: right 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55);
-            z-index: 1000;
-            max-height: 80vh;
-            overflow-y: auto;
+            z-index: 1001;
+            display: flex;
+            flex-direction: column;
         }
-
-        #carrito.visible {
-            right: 20px;
+        
+        .cart-ai.open {
+            right: 0;
         }
-
-        #listaCarrito {
-            max-height: 300px;
-            overflow-y: auto;
-            padding: 0;
-            list-style: none;
-        }
-
-        #listaCarrito li {
-            padding: 8px 0;
+        
+        .cart-header {
+            padding: 1.5rem;
             border-bottom: 1px solid #eee;
             display: flex;
             justify-content: space-between;
+            align-items: center;
         }
-
-        .delete-btn {
-            color: #ff4444;
+        
+        .cart-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+        
+        .close-cart {
             background: none;
             border: none;
+            font-size: 1.5rem;
             cursor: pointer;
-            font-weight: bold;
         }
-
-        /* Botón del Carrito */
-        #carrito-toggle {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            background-color: #cc0000;
+        
+        .cart-items {
+            flex-grow: 1;
+            overflow-y: auto;
+            padding: 1.5rem;
+        }
+        
+        .cart-item {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .cart-item-image {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 5px;
+        }
+        
+        .cart-item-details {
+            flex-grow: 1;
+        }
+        
+        .cart-item-title {
+            font-weight: 600;
+            margin-bottom: 0.3rem;
+        }
+        
+        .cart-item-price {
+            color: var(--rojo-carnicero);
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+        
+        .cart-item-actions {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .cart-item-quantity {
+            width: 50px;
+            text-align: center;
+            padding: 0.2rem;
+        }
+        
+        .remove-item {
+            background: none;
+            border: none;
+            color: #ff4444;
+            cursor: pointer;
+        }
+        
+        .cart-footer {
+            padding: 1.5rem;
+            border-top: 1px solid #eee;
+        }
+        
+        .cart-total {
+            display: flex;
+            justify-content: space-between;
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+        }
+        
+        .checkout-button {
+            width: 100%;
+            padding: 1rem;
+            background: var(--rojo-carnicero);
             color: white;
             border: none;
-            border-radius: 50%;
-            width: 60px;
-            height: 60px;
-            font-size: 24px;
-            cursor: pointer;
-            z-index: 999;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-            transition: all 0.3s;
-        }
-
-        #carrito-toggle:hover {
-            transform: scale(1.1);
-            background-color: #a50000;
-        }
-
-        #cart-count {
-            position: absolute;
-            top: -5px;
-            right: -5px;
-            background: #ffcc00;
-            color: #333;
-            border-radius: 50%;
-            width: 25px;
-            height: 25px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 14px;
-            font-weight: bold;
-        }
-
-        /* Formulario */
-        #formularioFinalizarPedido {
-            display: none;
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background: rgba(255, 255, 255, 0.98);
-            padding: 30px;
-            border-radius: 12px;
-            box-shadow: 0 5px 30px rgba(0,0,0,0.2);
-            z-index: 1001;
-            width: 90%;
-            max-width: 400px;
-        }
-
-        /* Notificaciones */
-        .notification {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background-color: #4CAF50;
-            color: white;
-            padding: 15px 25px;
             border-radius: 5px;
-            z-index: 1000;
-            animation: fadeInOut 2.5s ease-in-out;
-        }
-
-        @keyframes fadeInOut {
-            0% { opacity: 0; transform: translateY(20px); }
-            1% { opacity: 1; transform: translateY(0); }
-            90% { opacity: 1; transform: translateY(0); }
-            100% { opacity: 0; transform: translateY(20px); }
-        }
-
-        /* Descuentos */
-        .discount-applied {
-            color: #4caf50;
-            font-weight: bold;
-            margin: 5px 0;
-            display: none;
-        }
-
-        /* Sección de Recomendación */
-        #recomendacionSection {
-            background: rgba(255, 255, 255, 0.95);
-            padding: 20px;
-            border-radius: 12px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-            max-width: 500px;
-            margin: 20px auto;
-            text-align: center;
-            border: 2px dashed #cc0000;
-            display: none;
-        }
-
-        #codigoRecomendacionCliente {
-            font-size: 1.5em;
-            font-weight: bold;
-            color: #cc0000;
-            margin: 15px 0;
-            padding: 10px;
-            background: #f9f9f9;
-            border-radius: 8px;
-            display: inline-block;
-        }
-
-        #copyCodeBtn {
-            background-color: #4CAF50;
-            margin-left: 10px;
-        }
-
-        #copyCodeBtn:hover {
-            background-color: #3e8e41;
-        }
-
-        /* Publicidad Transitoria */
-        .ad-banner {
-            background: linear-gradient(90deg, #cc0000, #ff6b6b);
-            color: white;
-            padding: 15px;
-            text-align: center;
-            border-radius: 8px;
-            margin: 20px auto;
-            max-width: 600px;
-            animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.02); }
-            100% { transform: scale(1); }
-        }
-
-        /* Confirmación de Envío */
-        #confirmacionEnvio {
-            display: none;
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background: white;
-            padding: 25px;
-            border-radius: 10px;
-            box-shadow: 0 0 20px rgba(0,0,0,0.2);
-            z-index: 1002;
-            text-align: center;
-            max-width: 500px;
-            width: 90%;
-        }
-        
-        #confirmacionEnvio h3 {
-            color: #cc0000;
-            margin-top: 0;
-        }
-        
-        #confirmarBtn {
-            background: #4CAF50;
-            margin-right: 10px;
-        }
-        
-        #cancelarBtn {
-            background: #f44336;
-        }
-
-        /* Estilos del anuncio premium */
-        .anuncio-comision {
-            position: fixed;
-            top: 15px;
-            left: 15px;
-            background: linear-gradient(135deg, #ff6b6b, #cc0000);
-            color: white;
-            padding: 8px 12px;
-            border-radius: 6px;
-            font-weight: bold;
-            font-size: 13px;
-            z-index: 1000;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-            border: 2px solid white;
-            animation: latido 1.2s infinite;
-            text-align: center;
-            line-height: 1.3;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
-        }
-
-        @keyframes latido {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-            100% { transform: scale(1); }
-        }
-
-        .anuncio-comision:hover {
-            animation: none;
-            transform: scale(1.05);
+            font-weight: 600;
+            font-size: 1.1rem;
             cursor: pointer;
-            background: linear-gradient(135deg, #cc0000, #a50000);
+            transition: all 0.3s ease;
         }
-
+        
+        .checkout-button:hover {
+            background: #a00;
+        }
+        
+        /* Realidad Aumentada */
+        .ar-viewer {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.9);
+            z-index: 1002;
+            display: none;
+            flex-direction: column;
+        }
+        
+        .ar-header {
+            padding: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: white;
+        }
+        
+        .close-ar {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
+        .ar-container {
+            flex-grow: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .ar-instructions {
+            color: white;
+            text-align: center;
+            padding: 1rem;
+            font-size: 0.9rem;
+        }
+        
         /* Responsive */
-        @media (max-width: 768px) {
-            #carrito {
-                width: 90%;
-                right: -100%;
+        @media (max-width: 992px) {
+            .hero-title {
+                font-size: 3rem;
             }
             
-            #carrito.visible {
-                right: 5%;
+            .hero-subtitle {
+                font-size: 1.2rem;
             }
             
-            #carrito-toggle {
-                width: 50px;
-                height: 50px;
-                font-size: 20px;
-            }
-            
-            .product-list {
-                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-                gap: 15px;
-            }
-            
-            .product {
-                max-width: 150px;
-            }
-            
-            .product h4 {
-                font-size: 1.1em;
-            }
-            
-            .product-price {
-                font-size: 0.9em;
-            }
-            
-            button {
-                padding: 8px 12px;
-                font-size: 0.8em;
-            }
-            
-            #formularioFinalizarPedido {
-                width: 85%;
-                padding: 20px;
-            }
-
-            #confirmacionEnvio {
-                width: 80%;
-                padding: 15px;
+            .product-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
             }
         }
         
-        @media (max-width: 480px) {
-            .product-list {
-                grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+        @media (max-width: 768px) {
+            .nav-holografico {
+                flex-direction: column;
+                gap: 1rem;
             }
             
-            .product {
-                max-width: 140px;
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            
+            .cart-ai {
+                width: 100%;
+                max-width: 400px;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .hero-title {
+                font-size: 2rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .product-grid {
+                grid-template-columns: 1fr;
             }
         }
     </style>
 </head>
-    
 <body>
-    <div class="anuncio-comision">
-        💰 ¡GANA 5% DE COMISIÓN!<br>POR CADA REFERIDO ✅
-    </div>
-    
-    <div class="main-container">
-        <h2>🐖 Carnicería en línea</h2>
-        <p>La mejor carne y al mejor precio</p>
-
-        <!-- Sección de Recomendación (Arriba) -->
-        <div id="recomendacionSection">
-            <h3>¡Recomienda y gana! 💰</h3>
-            <div class="ad-banner">
-                <p>🔔 <strong>Recomienda y gana:</strong> Comparte tu código con familiares y amigos y gana comisión por cada compra de tus recomendados.</p>
+    <!-- Header Cuántico -->
+    <header class="header-4d">
+        <div class="nav-holografico">
+            <div class="logo-meat">
+                <i class="fas fa-bone"></i> PrimeMeat
             </div>
-            <p>Tu código de recomendación:</p>
-            <div>
-                <span id="codigoRecomendacionCliente"></span>
-                <button id="copyCodeBtn" onclick="copiarCodigo()">Copiar</button>
-            </div>
-            <p>Comparte tu codigo y obtendras tu comision por cada referido <strong>1% de comision</strong>.</p>
+            <nav class="smart-menu">
+                <a href="#cortes">Cortes Premium</a>
+                <a href="#paquetes">Paquetes</a>
+                <a href="#nosotros">Nosotros</a>
+                <a href="#contacto">Contacto</a>
+            </nav>
+            <button class="cart-button" id="cartButton">
+                <i class="fas fa-shopping-cart"></i>
+                <span class="cart-count">0</span>
+            </button>
         </div>
+    </header>
 
-        <!-- Productos -->
-        <div class="product-list">
-            <!-- Costilla -->
-            <div class="product">
-                <div class="product-img-container">
-                    <img src="https://res.cloudinary.com/ddogfjbou/image/upload/v1746577507/costilla_jocas4.jpg" alt="Costilla de cerdo premium">
+    <!-- Hero con Modelado 3D -->
+    <section class="hero-carnicero" style="background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://res.cloudinary.com/ddogfjbou/image/upload/v1746577507/costillas_fondo_spxgyv.jpg') center/cover no-repeat;">
+        <div class="hero-content">
+            <h1 class="hero-title">CARNE QUE INSPIRA</h1>
+            <p class="hero-subtitle">Cortes premium madurados a la perfección, entregados en tu puerta</p>
+            <button class="add-to-cart" style="padding: 1rem 2rem; font-size: 1.2rem;">EXPLORAR CORTES</button>
+        </div>
+    </section>
+
+    <!-- Productos con Realidad Aumentada -->
+    <section class="productos-section" id="cortes">
+        <h2 class="section-title">NUESTROS CORTES PREMIUM</h2>
+        <div class="product-grid">
+            <!-- Producto 1 -->
+            <div class="product-card">
+                <div class="product-badge">NUEVO</div>
+                <div class="product-media">
+                    <img src="https://res.cloudinary.com/ddogfjbou/image/upload/v1746577507/costilla_jocas4.jpg" alt="Costilla Premium" class="product-image">
+                    <button class="ar-button" data-model="costilla">
+                        <i class="fas fa-cube"></i>
+                    </button>
                 </div>
                 <div class="product-info">
-                    <h4>Costilla </h4>
-                    <p class="product-price">$15.000/libra</p>
-                    <input type="number" id="cantidadCostilla" class="cantidad-input" placeholder="Cantidad (lb)" min="1" step="0.5">
-                    <button onclick="agregarAlCarrito('Costilla Premium', 15000, 'cantidadCostilla')">Agregar al Carrito</button>
-                </div>
-            </div>
-
-            <!-- Chicharrón -->
-            <div class="product">
-                <div class="product-img-container">
-                    <img src="https://res.cloudinary.com/ddogfjbou/image/upload/v1746577505/chicharron_tmi0jr.jpg" alt="Chicharrón artesanal">
-                </div>
-                <div class="product-info">
-                    <h4>Chicharrón</h4>
-                    <p class="product-price">$12.000/libra</p>
-                    <input type="number" id="cantidadChicharron" class="cantidad-input" placeholder="Cantidad (lb)" min="1" step="0.5">
-                    <button onclick="agregarAlCarrito('Chicharrón Artesanal', 12000, 'cantidadChicharron')">Agregar al Carrito</button>
-                </div>
-            </div>
-
-            <!-- Carne -->
-            <div class="product">
-                <div class="product-img-container">
-                    <img src="https://res.cloudinary.com/ddogfjbou/image/upload/v1746577505/carne_facpmo.jpg" alt="Carne de cerdo selecta">
-                </div>
-                <div class="product-info">
-                    <h4>Carne </h4>
-                    <p class="product-price">$20.000/libra</p>
-                    <input type="number" id="cantidadCarne" class="cantidad-input" placeholder="Cantidad (lb)" min="1" step="0.5">
-                    <button onclick="agregarAlCarrito('Carne Selecta', 20000, 'cantidadCarne')">Agregar al Carrito</button>
+                    <h3 class="product-title">Costilla Angus</h3>
+                    <div class="product-meta">
+                        <span class="product-price">$15,000/lb</span>
+                        <div class="product-actions">
+                            <button class="add-to-cart" data-id="1">Añadir</button>
+                        </div>
+                    </div>
                 </div>
             </div>
 
-            <!-- Lomo -->
-            <div class="product">
-                <div class="product-img-container">
-                    <img src="https://res.cloudinary.com/ddogfjbou/image/upload/v1746577508/lomo_ptk8sx.jpg" alt="Lomo de cerdo premium">
+            <!-- Producto 2 -->
+            <div class="product-card">
+                <div class="product-media">
+                    <img src="https://res.cloudinary.com/ddogfjbou/image/upload/v1746577505/chicharron_tmi0jr.jpg" alt="Chicharrón Artesanal" class="product-image">
+                    <button class="ar-button" data-model="chicharron">
+                        <i class="fas fa-cube"></i>
+                    </button>
                 </div>
                 <div class="product-info">
-                    <h4>Lomo </h4>
-                    <p class="product-price">$25.000/libra</p>
-                    <input type="number" id="cantidadLomo" class="cantidad-input" placeholder="Cantidad (lb)" min="1" step="0.5">
-                    <button onclick="agregarAlCarrito('Lomo Premium', 25000, 'cantidadLomo')">Agregar al Carrito</button>
+                    <h3 class="product-title">Chicharrón Artesanal</h3>
+                    <div class="product-meta">
+                        <span class="product-price">$12,000/lb</span>
+                        <div class="product-actions">
+                            <button class="add-to-cart" data-id="2">Añadir</button>
+                        </div>
+                    </div>
                 </div>
             </div>
 
-            <!-- Pesuña -->
-            <div class="product">
-                <div class="product-img-container">
-                    <img src="https://res.cloudinary.com/ddogfjbou/image/upload/v1746577509/pesuna_ali9sz.jpg" alt="Pesuña de cerdo especial">
+            <!-- Producto 3 -->
+            <div class="product-card">
+                <div class="product-badge">POPULAR</div>
+                <div class="product-media">
+                    <img src="https://res.cloudinary.com/ddogfjbou/image/upload/v1746577505/carne_facpmo.jpg" alt="Carne Selecta" class="product-image">
+                    <button class="ar-button" data-model="carne">
+                        <i class="fas fa-cube"></i>
+                    </button>
                 </div>
                 <div class="product-info">
-                    <h4>Pezuña</h4>
-                    <p class="product-price">$10.000/libra</p>
-                    <input type="number" id="cantidadPesuna" class="cantidad-input" placeholder="Cantidad (lb)" min="1" step="0.5">
-                    <button onclick="agregarAlCarrito('Pesuña Especial', 10000, 'cantidadPesuna')">Agregar al Carrito</button>
+                    <h3 class="product-title">Carne Wagyu</h3>
+                    <div class="product-meta">
+                        <span class="product-price">$45,000/lb</span>
+                        <div class="product-actions">
+                            <button class="add-to-cart" data-id="3">Añadir</button>
+                        </div>
+                    </div>
                 </div>
             </div>
-            
-            <!-- Chuleta -->
-            <div class="product">
-                <div class="product-img-container">
-                    <img src="https://res.cloudinary.com/ddogfjbou/image/upload/v1746577508/lomo_ptk8sx.jpg" alt="Chuleta de cerdo">
+
+            <!-- Producto 4 -->
+            <div class="product-card">
+                <div class="product-media">
+                    <img src="https://res.cloudinary.com/ddogfjbou/image/upload/v1746577508/lomo_ptk8sx.jpg" alt="Lomo Premium" class="product-image">
+                    <button class="ar-button" data-model="lomo">
+                        <i class="fas fa-cube"></i>
+                    </button>
                 </div>
                 <div class="product-info">
-                    <h4>Chuleta</h4>
-                    <p class="product-price">$18.000/libra</p>
-                    <input type="number" id="cantidadChuleta" class="cantidad-input" placeholder="Cantidad (lb)" min="1" step="0.5">
-                    <button onclick="agregarAlCarrito('Chuleta', 18000, 'cantidadChuleta')">Agregar al Carrito</button>
+                    <h3 class="product-title">Lomo Dry-Aged</h3>
+                    <div class="product-meta">
+                        <span class="product-price">$32,000/lb</span>
+                        <div class="product-actions">
+                            <button class="add-to-cart" data-id="4">Añadir</button>
+                        </div>
+                    </div>
                 </div>
             </div>
-            
-            <!-- Oreja -->
-            <div class="product">
-                <div class="product-img-container">
-                    <img src="https://res.cloudinary.com/ddogfjbou/image/upload/v1746577508/lomo_ptk8sx.jpg" alt="Oreja de cerdo">
+
+            <!-- Producto 5 -->
+            <div class="product-card">
+                <div class="product-media">
+                    <img src="https://res.cloudinary.com/ddogfjbou/image/upload/v1746577509/pesuna_ali9sz.jpg" alt="Pezuña Especial" class="product-image">
+                    <button class="ar-button" data-model="pesuna">
+                        <i class="fas fa-cube"></i>
+                    </button>
                 </div>
                 <div class="product-info">
-                    <h4>Oreja</h4>
-                    <p class="product-price">$8.000/libra</p>
-                    <input type="number" id="cantidadOreja" class="cantidad-input" placeholder="Cantidad (lb)" min="1" step="0.5">
-                    <button onclick="agregarAlCarrito('Oreja', 8000, 'cantidadOreja')">Agregar al Carrito</button>
+                    <h3 class="product-title">Pezuña Premium</h3>
+                    <div class="product-meta">
+                        <span class="product-price">$10,000/lb</span>
+                        <div class="product-actions">
+                            <button class="add-to-cart" data-id="5">Añadir</button>
+                        </div>
+                    </div>
                 </div>
             </div>
-            
-            <!-- Hígado -->
-            <div class="product">
-                <div class="product-img-container">
-                    <img src="https://res.cloudinary.com/ddogfjbou/image/upload/v1746577508/lomo_ptk8sx.jpg" alt="Hígado de cerdo">
+
+            <!-- Producto 6 -->
+            <div class="product-card">
+                <div class="product-badge">OFERTA</div>
+                <div class="product-media">
+                    <img src="https://res.cloudinary.com/ddogfjbou/image/upload/v1746577508/lomo_ptk8sx.jpg" alt="Chuleta" class="product-image">
+                    <button class="ar-button" data-model="chuleta">
+                        <i class="fas fa-cube"></i>
+                    </button>
                 </div>
                 <div class="product-info">
-                    <h4>Hígado</h4>
-                    <p class="product-price">$7.000/libra</p>
-                    <input type="number" id="cantidadHigado" class="cantidad-input" placeholder="Cantidad (lb)" min="1" step="0.5">
-                    <button onclick="agregarAlCarrito('Hígado', 7000, 'cantidadHigado')">Agregar al Carrito</button>
+                    <h3 class="product-title">Chuleta de Cerdo</h3>
+                    <div class="product-meta">
+                        <span class="product-price">$18,000/lb</span>
+                        <div class="product-actions">
+                            <button class="add-to-cart" data-id="6">Añadir</button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
+    </section>
 
-        <!-- Formulario -->
-        <div id="formularioFinalizarPedido">
-            <h3>📋 Completa tu pedido</h3>
-            <form id="formularioPedido">
-                <label for="nombre">Nombre completo:</label>
-                <input type="text" id="nombre" name="nombre" required minlength="3">
-                
-                <label for="telefono">Teléfono de contacto:</label>
-                <input type="tel" id="telefono" name="telefono" required>
-                
-                <label for="codigoRecomendacion">Código de comision (opcional):</label>
-                <input type="text" id="codigoRecomendacion" name="codigoRecomendacion">
-                
-                <button type="submit">Finalizar Pedido</button>
-            </form>
+    <!-- Carrito con IA -->
+    <div class="cart-ai" id="cartAI">
+        <div class="cart-header">
+            <h3 class="cart-title">Tu Carrito</h3>
+            <button class="close-cart" id="closeCart">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="cart-items" id="cartItems">
+            <!-- Los items del carrito se añadirán aquí dinámicamente -->
+            <p class="empty-cart-message">Tu carrito está vacío</p>
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span>Total:</span>
+                <span id="cartTotal">$0</span>
+            </div>
+            <button class="checkout-button">Finalizar Compra</button>
         </div>
     </div>
 
-    <!-- Carrito de Compras -->
-    <div id="carrito">
-        <h3>🛒 Tu Carrito <span id="cart-count"></span></h3>
-        <ul id="listaCarrito">
-            <li class="empty-cart">El carrito está vacío</li>
-        </ul>
-        <p id="descuentoAplicado" class="discount-applied" style="display:none;"></p>
-        <p><strong>Total: $<span id="totalCarrito">0</span></strong></p>
-        <button onclick="finalizarPedido()">Finalizar Pedido</button>
-    </div>
-
-    <!-- Botón Toggle Carrito -->
-    <button id="carrito-toggle" title="Ver carrito">
-        🛒
-    </button>
-
-    <!-- Confirmación de Envío -->
-    <div id="confirmacionEnvio">
-        <h3>⚠️ Confirmar envío del pedido</h3>
-        <p>¿Estás seguro de enviar este pedido por WhatsApp?</p>
-        <p><strong>Recomienda y gana:</strong> Comparte tu código con amigos para obtener descuentos.</p>
-        <button id="confirmarBtn">✅ Sí, enviar</button>
-        <button id="cancelarBtn">❌ Cancelar</button>
+    <!-- Realidad Aumentada -->
+    <div class="ar-viewer" id="arViewer">
+        <div class="ar-header">
+            <h3>Vista AR</h3>
+            <button class="close-ar" id="closeAR">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="ar-container">
+            <!-- Aquí iría el visor AR -->
+            <div style="color: white; text-align: center;">
+                <i class="fas fa-cube" style="font-size: 5rem; margin-bottom: 1rem;"></i>
+                <p>Escanea tu entorno para colocar el producto</p>
+            </div>
+        </div>
+        <div class="ar-instructions">
+            Mueve tu dispositivo lentamente para detectar superficies
+        </div>
     </div>
 
     <script>
-        // Variables globales
-        let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
-        let total = 0;
-        let descuentoAplicado = false;
-        let carritoVisible = false;
-        let codigoRecomendacionActual = "";
-        let mensajeWhatsApp = "";
-
-        // Inicialización
-        document.addEventListener('DOMContentLoaded', function() {
-            actualizarCarrito();
-            document.getElementById('carrito-toggle').addEventListener('click', toggleCarrito);
-            
-            // Eventos para los botones de confirmación
-            document.getElementById("confirmarBtn").addEventListener("click", confirmarEnvio);
-            document.getElementById("cancelarBtn").addEventListener("click", cancelarEnvio);
-        });
-
-        // Función para generar código de recomendación personalizado completo
-        function generarCodigoRecomendacion(nombre, telefono) {
-            // Obtener primera letra del nombre (en mayúscula)
-            const primeraLetra = nombre.trim().charAt(0).toUpperCase();
-            
-            // Limpiar teléfono (solo números)
-            const telefonoLimpio = telefono.replace(/\D/g, '');
-            
-            // Validar que tengamos los datos necesarios
-            if (!primeraLetra || telefonoLimpio.length < 8) {
-                mostrarNotificacion("No se pudo generar código personalizado. Usando código genérico.");
-                return "CARNE-" + Math.floor(1000 + Math.random() * 9000);
-            }
-            
-            return `${primeraLetra}-${telefonoLimpio}`;
-        }
-
-        // Función para copiar el código
-        function copiarCodigo() {
-            if (!codigoRecomendacionActual) {
-                mostrarNotificacion("No hay código para copiar");
-                return;
-            }
-            
-            navigator.clipboard.writeText(codigoRecomendacionActual).then(() => {
-                mostrarNotificacion("¡Código copiado! Pégalo para compartirlo.");
-            }).catch(err => {
-                console.error("Error al copiar: ", err);
-                mostrarNotificacion("Error al copiar el código");
+        // Carrito de compras
+        let cart = [];
+        const cartButton = document.getElementById('cartButton');
+        const cartAI = document.getElementById('cartAI');
+        const closeCart = document.getElementById('closeCart');
+        const cartItems = document.getElementById('cartItems');
+        const cartTotal = document.getElementById('cartTotal');
+        const cartCount = document.querySelector('.cart-count');
+        
+        // Realidad Aumentada
+        const arButtons = document.querySelectorAll('.ar-button');
+        const arViewer = document.getElementById('arViewer');
+        const closeAR = document.getElementById('closeAR');
+        
+        // Añadir al carrito
+        document.querySelectorAll('.add-to-cart').forEach(button => {
+            button.addEventListener('click', () => {
+                const productCard = button.closest('.product-card');
+                const productId = button.getAttribute('data-id');
+                const productTitle = productCard.querySelector('.product-title').textContent;
+                const productPrice = parseFloat(productCard.querySelector('.product-price').textContent.replace(/[^0-9.-]+/g,""));
+                const productImage = productCard.querySelector('.product-image').src;
+                
+                // Verificar si el producto ya está en el carrito
+                const existingItem = cart.find(item => item.id === productId);
+                
+                if (existingItem) {
+                    existingItem.quantity += 1;
+                } else {
+                    cart.push({
+                        id: productId,
+                        title: productTitle,
+                        price: productPrice,
+                        image: productImage,
+                        quantity: 1
+                    });
+                }
+                
+                updateCart();
+                showNotification(`${productTitle} añadido al carrito`);
             });
-        }
-
-        // Funciones del Carrito
-        function agregarAlCarrito(nombre, precio, inputId) {
-            const cantidadInput = document.getElementById(inputId);
-            const cantidad = parseFloat(cantidadInput.value);
-            
-            if (!cantidad || cantidad <= 0) {
-                mostrarNotificacion("Por favor ingresa una cantidad válida");
-                return;
-            }
-
-            const itemExistente = carrito.find(item => item.nombre === nombre);
-            if (itemExistente) {
-                itemExistente.cantidad += cantidad;
+        });
+        
+        // Actualizar carrito
+        function updateCart() {
+            // Actualizar interfaz
+            if (cart.length === 0) {
+                cartItems.innerHTML = '<p class="empty-cart-message">Tu carrito está vacío</p>';
             } else {
-                carrito.push({ nombre, precio, cantidad });
-            }
-
-            cantidadInput.value = '';
-            guardarCarrito();
-            actualizarCarrito();
-            mostrarNotificacion(`${nombre} agregado al carrito`);
-            mostrarCarrito();
-        }
-
-        function eliminarDelCarrito(index) {
-            const item = carrito[index];
-            carrito.splice(index, 1);
-            guardarCarrito();
-            actualizarCarrito();
-            mostrarNotificacion(`${item.nombre} eliminado`);
-            if (carrito.length === 0) {
-                ocultarCarrito();
-            }
-        }
-
-        function actualizarCarrito() {
-            const lista = document.getElementById("listaCarrito");
-            const totalElement = document.getElementById("totalCarrito");
-            const descuentoElement = document.getElementById("descuentoAplicado");
-            
-            lista.innerHTML = '';
-            total = 0;
-
-            if (carrito.length === 0) {
-                lista.innerHTML = '<li class="empty-cart">El carrito está vacío</li>';
-            } else {
-                carrito.forEach((item, index) => {
-                    const li = document.createElement("li");
-                    li.innerHTML = `
-                        ${item.nombre} - ${item.cantidad} lb - $${(item.precio * item.cantidad).toLocaleString()}
-                        <button class="delete-btn" onclick="eliminarDelCarrito(${index})">✕</button>
+                cartItems.innerHTML = '';
+                cart.forEach(item => {
+                    const cartItemElement = document.createElement('div');
+                    cartItemElement.className = 'cart-item';
+                    cartItemElement.innerHTML = `
+                        <img src="${item.image}" alt="${item.title}" class="cart-item-image">
+                        <div class="cart-item-details">
+                            <h4 class="cart-item-title">${item.title}</h4>
+                            <p class="cart-item-price">$${(item.price * item.quantity).toLocaleString()}</p>
+                            <div class="cart-item-actions">
+                                <input type="number" min="1" value="${item.quantity}" class="cart-item-quantity" data-id="${item.id}">
+                                <button class="remove-item" data-id="${item.id}">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </div>
+                        </div>
                     `;
-                    lista.appendChild(li);
-                    total += item.precio * item.cantidad;
+                    cartItems.appendChild(cartItemElement);
+                });
+                
+                // Agregar eventos a los nuevos elementos
+                document.querySelectorAll('.cart-item-quantity').forEach(input => {
+                    input.addEventListener('change', (e) => {
+                        const id = e.target.getAttribute('data-id');
+                        const quantity = parseInt(e.target.value);
+                        const item = cart.find(item => item.id === id);
+                        
+                        if (item && quantity > 0) {
+                            item.quantity = quantity;
+                            updateCart();
+                        }
+                    });
+                });
+                
+                document.querySelectorAll('.remove-item').forEach(button => {
+                    button.addEventListener('click', (e) => {
+                        const id = e.target.closest('button').getAttribute('data-id');
+                        cart = cart.filter(item => item.id !== id);
+                        updateCart();
+                        showNotification('Producto eliminado');
+                    });
                 });
             }
-
-            // Aplicar descuento (acepta "DESCUENTO10" o códigos que empiecen con "CARNE-")
-            const codigo = document.getElementById("codigoRecomendacion").value;
-            if (codigo === "DESCUENTO10" || codigo.startsWith("CARNE-")) {
-                total = total * 0.9;
-                descuentoElement.style.display = "block";
-                descuentoElement.textContent = "¡Descuento 1% aplicado!";
-                descuentoAplicado = true;
-            } else {
-                descuentoElement.style.display = "none";
-                descuentoAplicado = false;
-            }
-
-            totalElement.textContent = total.toLocaleString();
-            document.getElementById("cart-count").textContent = carrito.length > 0 ? carrito.length : '';
+            
+            // Calcular total
+            const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            cartTotal.textContent = `$${total.toLocaleString()}`;
+            cartCount.textContent = cart.reduce((sum, item) => sum + item.quantity, 0);
+            
+            // Guardar en localStorage
+            localStorage.setItem('cart', JSON.stringify(cart));
         }
-
-        function guardarCarrito() {
-            localStorage.setItem('carrito', JSON.stringify(carrito));
-        }
-
-        function mostrarNotificacion(mensaje) {
-            const notificacion = document.createElement("div");
-            notificacion.className = "notification";
-            notificacion.textContent = mensaje;
-            document.body.appendChild(notificacion);
+        
+        // Mostrar notificación
+        function showNotification(message) {
+            const notification = document.createElement('div');
+            notification.className = 'notification';
+            notification.textContent = message;
+            document.body.appendChild(notification);
             
             setTimeout(() => {
-                notificacion.remove();
-            }, 2500);
+                notification.remove();
+            }, 3000);
         }
-
-        function toggleCarrito() {
-            carritoVisible = !carritoVisible;
-            if (carritoVisible) {
-                mostrarCarrito();
-            } else {
-                ocultarCarrito();
-            }
+        
+        // Cargar carrito al iniciar
+        if (localStorage.getItem('cart')) {
+            cart = JSON.parse(localStorage.getItem('cart'));
+            updateCart();
         }
-
-        function mostrarCarrito() {
-            if (carrito.length > 0) {
-                document.getElementById('carrito').classList.add('visible');
-                carritoVisible = true;
-                document.getElementById('carrito-toggle').textContent = '✕';
-            }
-        }
-
-        function ocultarCarrito() {
-            document.getElementById('carrito').classList.remove('visible');
-            carritoVisible = false;
-            document.getElementById('carrito-toggle').textContent = '🛒';
-        }
-
-        function finalizarPedido() {
-            if (carrito.length === 0) {
-                mostrarNotificacion("Agrega productos al carrito primero");
-                return;
-            }
-            document.getElementById("formularioFinalizarPedido").style.display = "block";
-        }
-
-        // Procesar formulario y mostrar confirmación
-        document.getElementById("formularioPedido").addEventListener("submit", function(e) {
-            e.preventDefault();
-
-            const nombre = document.getElementById("nombre").value;
-            const telefono = document.getElementById("telefono").value;
-            const telefonoLimpio = telefono.replace(/\D/g, '');
-            
-            if (nombre.length < 3) {
-                mostrarNotificacion("Nombre debe tener al menos 3 caracteres");
-                return;
-            }
-
-            if (telefonoLimpio.length < 8) {
-                mostrarNotificacion("Teléfono no válido (mínimo 8 dígitos)");
-                return;
-            }
-
-            // Generar código de recomendación PERSONALIZADO COMPLETO
-            codigoRecomendacionActual = generarCodigoRecomendacion(nombre, telefono);
-            
-            // Mostrar sección de recomendación
-            document.getElementById("recomendacionSection").style.display = "block";
-            document.getElementById("codigoRecomendacionCliente").textContent = codigoRecomendacionActual;
-
-            // Construir mensaje para WhatsApp
-            mensajeWhatsApp = `*NUEVO PEDIDO*%0A%0A`;
-            mensajeWhatsApp += `*Cliente:* ${nombre}%0A`;
-            mensajeWhatsApp += `*Teléfono:* ${telefono}%0A%0A`;
-            mensajeWhatsApp += `*Productos:*%0A`;
-            
-            carrito.forEach(item => {
-                mensajeWhatsApp += `- ${item.nombre} (${item.cantidad} lb): $${(item.precio * item.cantidad).toLocaleString()}%0A`;
+        
+        // Eventos del carrito
+        cartButton.addEventListener('click', () => {
+            cartAI.classList.add('open');
+        });
+        
+        closeCart.addEventListener('click', () => {
+            cartAI.classList.remove('open');
+        });
+        
+        // Realidad Aumentada
+        arButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const model = button.getAttribute('data-model');
+                // Aquí normalmente cargarías el modelo 3D correspondiente
+                arViewer.style.display = 'flex';
+            });
+        });
+        
+        closeAR.addEventListener('click', () => {
+            arViewer.style.display = 'none';
+        });
+        
+        // Efectos especiales
+        document.querySelectorAll('.product-card').forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const x = e.clientX - card.getBoundingClientRect().left;
+                const y = e.clientY - card.getBoundingClientRect().top;
+                
+                const centerX = card.offsetWidth / 2;
+                const centerY = card.offsetHeight / 2;
+                
+                const angleX = (y - centerY) / 20;
+                const angleY = (centerX - x) / 20;
+                
+                card.style.transform = `perspective(1000px) rotateX(${angleX}deg) rotateY(${angleY}deg)`;
             });
             
-            mensajeWhatsApp += `%0A*Total:* $${total.toLocaleString()}`;
-            
-            if (descuentoAplicado) {
-                mensajeWhatsApp += `%0A*Incluye 1% de comision*`;
-            }
-            
-            mensajeWhatsApp += `%0A%0A*Código Cliente:* ${codigoRecomendacionActual}`;
-
-            // Mostrar confirmación
-            document.getElementById("confirmacionEnvio").style.display = "block";
-        });
-
-        function confirmarEnvio() {
-            // Abrir WhatsApp
-            const numeroWhatsApp = "573246453591"; // Reemplaza con tu número
-            window.open(`https://wa.me/${numeroWhatsApp}?text=${mensajeWhatsApp}`, "_blank");
-            
-            // Limpiar y cerrar todo
-            carrito = [];
-            localStorage.removeItem('carrito');
-            actualizarCarrito();
-            ocultarCarrito();
-            document.getElementById("formularioFinalizarPedido").style.display = "none";
-            document.getElementById("confirmacionEnvio").style.display = "none";
-            document.getElementById("formularioPedido").reset();
-            
-            mostrarNotificacion("¡Pedido enviado con éxito!");
-        }
-
-        function cancelarEnvio() {
-            document.getElementById("confirmacionEnvio").style.display = "none";
-            mostrarNotificacion("Envío cancelado. Puedes modificar tu pedido.");
-        }
-
-        // Validar código en tiempo real
-        document.getElementById("codigoRecomendacion").addEventListener("input", function() {
-            actualizarCarrito();
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0)';
+            });
         });
     </script>
 </body>
