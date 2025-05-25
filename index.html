@@ -10,9 +10,11 @@
             font-family: 'Arial', sans-serif;
             margin: 0;
             padding: 20px;
-            background-image: url('img/fondo.jpg');
+            background-image: url('https://res.cloudinary.com/ddogfjbou/image/upload/v1746577507/costillas_fondo_spxgyv.jpg');
             background-size: cover;
+            background-position: center;
             background-attachment: fixed;
+            background-repeat: no-repeat;
             color: #333;
         }
         
@@ -26,25 +28,6 @@
             background-color: rgba(255, 255, 255, 0.88);
             z-index: -1;
         }
-
-        body {
-  background-image: url('https://res.cloudinary.com/ddogfjbou/image/upload/v1746577507/costillas_fondo_spxgyv.jpg');
-  background-size: cover;       /* Cubre todo el espacio */
-  background-position: center;  /* Centra la imagen */
-  background-attachment: fixed; /* Efecto parallax (opcional) */
-  background-repeat: no-repeat; /* Evita que se repita */
-}
-
-body::before {
-  content: "";
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(255, 255, 255, 0.88); /* Capa blanca semitransparente */
-  z-index: -1;
-}
 
         h2, h3 {
             color: #cc0000;
@@ -78,20 +61,23 @@ body::before {
 
         /* Productos */
         .product-list {
-            display: flex;
-            flex-wrap: wrap;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
             gap: 25px;
-            justify-content: center;
+            padding: 15px;
+            justify-items: center;
             margin-top: 20px;
         }
 
         .product {
-            width: 280px;
+            width: 100%;
+            max-width: 280px;
             background: rgba(255, 255, 255, 0.95);
             border-radius: 12px;
             overflow: hidden;
             box-shadow: 0 5px 15px rgba(0,0,0,0.1);
             transition: all 0.3s ease;
+            margin: 0 auto;
         }
 
         .product:hover {
@@ -104,11 +90,6 @@ body::before {
             overflow: hidden;
         }
 
-        @media (max-width: 600px) {
-  .product {
-    width: 140px !important;
-  }
-}
         .product img {
             width: 100%;
             height: 100%;
@@ -355,6 +336,39 @@ body::before {
             background: #f44336;
         }
 
+        /* Estilos del anuncio premium */
+        .anuncio-comision {
+            position: fixed;
+            top: 15px;
+            left: 15px;
+            background: linear-gradient(135deg, #ff6b6b, #cc0000);
+            color: white;
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-weight: bold;
+            font-size: 13px;
+            z-index: 1000;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            border: 2px solid white;
+            animation: latido 1.2s infinite;
+            text-align: center;
+            line-height: 1.3;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+        }
+
+        @keyframes latido {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        .anuncio-comision:hover {
+            animation: none;
+            transform: scale(1.05);
+            cursor: pointer;
+            background: linear-gradient(135deg, #cc0000, #a50000);
+        }
+
         /* Responsive */
         @media (max-width: 768px) {
             #carrito {
@@ -372,73 +386,6 @@ body::before {
                 font-size: 20px;
             }
             
-            .product {
-                width: 100%;
-                max-width: 350px;
-            }
-            
-            #formularioFinalizarPedido {
-                width: 85%;
-                padding: 20px;
-            }
-
-            #confirmacionEnvio {
-                width: 80%;
-                padding: 15px;
-            }
-/* Estilos del anuncio premium */
-.anuncio-comision {
-  position: fixed;
-  top: 15px;
-  left: 15px;
-  background: linear-gradient(135deg, #ff6b6b, #cc0000);
-  color: white;
-  padding: 8px 12px;
-  border-radius: 6px;
-  font-weight: bold;
-  font-size: 13px;
-  z-index: 1000;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-  border: 2px solid white;
-  animation: latido 1.2s infinite;
-  text-align: center;
-  line-height: 1.3;
-  text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
-}
-
-@keyframes latido {
-  0% { transform: scale(1); }
-  50% { transform: scale(1.05); }
-  100% { transform: scale(1); }
-}
-
-/* Efecto hover para interacción */
-.anuncio-comision:hover {
-  animation: none;
-  transform: scale(1.05);
-  cursor: pointer;
-  background: linear-gradient(135deg, #cc0000, #a50000);
-}
-        }
-             /* Añade esto al CSS existente (sin borrar lo anterior) */
-        
-        /* Ajustes específicos para la cuadrícula de productos */
-        .product-list {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 25px;
-            padding: 15px;
-            justify-items: center;
-        }
-        
-        .product {
-            width: 100%;
-            max-width: 280px;
-            margin: 0 auto;
-        }
-        
-        /* Responsive para móviles */
-        @media (max-width: 768px) {
             .product-list {
                 grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
                 gap: 15px;
@@ -460,6 +407,16 @@ body::before {
                 padding: 8px 12px;
                 font-size: 0.8em;
             }
+            
+            #formularioFinalizarPedido {
+                width: 85%;
+                padding: 20px;
+            }
+
+            #confirmacionEnvio {
+                width: 80%;
+                padding: 15px;
+            }
         }
         
         @media (max-width: 480px) {
@@ -475,9 +432,9 @@ body::before {
 </head>
     
 <body>
-    <div class="anuncio-parpadeante">
-  💰 ¡GANA 5% DE COMISIÓN!<br>POR CADA REFERIDO ✅
-</div>
+    <div class="anuncio-comision">
+        💰 ¡GANA 5% DE COMISIÓN!<br>POR CADA REFERIDO ✅
+    </div>
     
     <div class="main-container">
         <h2>🐖 Carnicería en línea</h2>
@@ -563,33 +520,46 @@ body::before {
                     <button onclick="agregarAlCarrito('Pesuña Especial', 10000, 'cantidadPesuna')">Agregar al Carrito</button>
                 </div>
             </div>
+            
+            <!-- Chuleta -->
+            <div class="product">
+                <div class="product-img-container">
+                    <img src="https://res.cloudinary.com/ddogfjbou/image/upload/v1746577508/lomo_ptk8sx.jpg" alt="Chuleta de cerdo">
+                </div>
+                <div class="product-info">
+                    <h4>Chuleta</h4>
+                    <p class="product-price">$18.000/libra</p>
+                    <input type="number" id="cantidadChuleta" class="cantidad-input" placeholder="Cantidad (lb)" min="1" step="0.5">
+                    <button onclick="agregarAlCarrito('Chuleta', 18000, 'cantidadChuleta')">Agregar al Carrito</button>
+                </div>
+            </div>
+            
+            <!-- Oreja -->
+            <div class="product">
+                <div class="product-img-container">
+                    <img src="https://res.cloudinary.com/ddogfjbou/image/upload/v1746577508/lomo_ptk8sx.jpg" alt="Oreja de cerdo">
+                </div>
+                <div class="product-info">
+                    <h4>Oreja</h4>
+                    <p class="product-price">$8.000/libra</p>
+                    <input type="number" id="cantidadOreja" class="cantidad-input" placeholder="Cantidad (lb)" min="1" step="0.5">
+                    <button onclick="agregarAlCarrito('Oreja', 8000, 'cantidadOreja')">Agregar al Carrito</button>
+                </div>
+            </div>
+            
+            <!-- Hígado -->
+            <div class="product">
+                <div class="product-img-container">
+                    <img src="https://res.cloudinary.com/ddogfjbou/image/upload/v1746577508/lomo_ptk8sx.jpg" alt="Hígado de cerdo">
+                </div>
+                <div class="product-info">
+                    <h4>Hígado</h4>
+                    <p class="product-price">$7.000/libra</p>
+                    <input type="number" id="cantidadHigado" class="cantidad-input" placeholder="Cantidad (lb)" min="1" step="0.5">
+                    <button onclick="agregarAlCarrito('Hígado', 7000, 'cantidadHigado')">Agregar al Carrito</button>
+                </div>
+            </div>
         </div>
-           <!-- chuleta -->
-            <div class="product">
-                <div class="product-img-container">
-                    <img src="https://res.cloudinary.com/ddogfjbou/image/upload/v1746577508/lomo_ptk8sx.jpg" alt="Lomo de cerdo premium">
-                </div>
-                <div class="product-info">
-                    <h4>chuleta </h4>
-                    <p class="product-price">$25.000/libra</p>
-                    <input type="number" id="cantidadLomo" class="cantidad-input" placeholder="Cantidad (lb)" min="1" step="0.5">
-                    <button onclick="agregarAlCarrito('Lomo Premium', 25000, 'cantidadLomo')">Agregar al Carrito</button>
-                </div>
-            </div>
-
-           <!-- oreja -->
-            <div class="product">
-                <div class="product-img-container">
-                    <img src="https://res.cloudinary.com/ddogfjbou/image/upload/v1746577508/lomo_ptk8sx.jpg" alt="Lomo de cerdo premium">
-                </div>
-                <div class="product-info">
-                    <h4>oreja </h4>
-                    <p class="product-price">$25.000/libra</p>
-                    <input type="number" id="cantidadLomo" class="cantidad-input" placeholder="Cantidad (lb)" min="1" step="0.5">
-                    <button onclick="agregarAlCarrito('Lomo Premium', 25000, 'cantidadLomo')">Agregar al Carrito</button>
-                </div>
-            </div>
-
 
         <!-- Formulario -->
         <div id="formularioFinalizarPedido">
