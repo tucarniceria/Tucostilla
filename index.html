@@ -3,528 +3,1013 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mega Sistema de Pedidos</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>PrimeMeat | Carnicería Premium 4.0</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
-            --primary-color: #25D366;
-            --secondary-color: #128C7E;
+            --rojo-carnicero: #c00;
+            --negro-elegante: #1a1a1a;
+            --blanco-hueso: #f9f5f0;
+        }
+        
+        /* Reset 3D */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
         }
         
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f8f9fa;
+            background-color: var(--blanco-hueso);
+            color: var(--negro-elegante);
+            overflow-x: hidden;
         }
         
-        .navbar-brand {
-            font-weight: bold;
-            color: var(--secondary-color) !important;
+        /* Header Cuántico */
+        .header-4d {
+            background: linear-gradient(135deg, var(--negro-elegante) 0%, var(--rojo-carnicero) 100%);
+            padding: 1rem;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            border-bottom: 1px solid rgba(255,255,255,0.1);
         }
         
-        .card {
+        .nav-holografico {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .logo-meat {
+            font-size: 2rem;
+            font-weight: 800;
+            background: linear-gradient(to right, #fff 0%, #ff9a9a 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: flex;
+            align-items: center;
+        }
+        
+        /* Menú con IA */
+        .smart-menu {
+            display: flex;
+            gap: 2rem;
+        }
+        
+        .smart-menu a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            position: relative;
+            padding: 0.5rem 0;
+        }
+        
+        .smart-menu a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 3px;
+            bottom: 0;
+            left: 0;
+            background-color: white;
+            transition: width 0.3s ease;
+        }
+        
+        .smart-menu a:hover::after {
+            width: 100%;
+        }
+        
+        /* Hero con Modelado 3D */
+        .hero-carnicero {
+            height: 80vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-content {
+            z-index: 2;
+            text-align: center;
+            max-width: 800px;
+            padding: 2rem;
+        }
+        
+        .hero-title {
+            font-size: 4rem;
+            font-weight: 900;
+            color: white;
+            margin-bottom: 1rem;
+            text-shadow: 0 5px 15px rgba(0,0,0,0.5);
+        }
+        
+        .hero-subtitle {
+            font-size: 1.5rem;
+            color: rgba(255,255,255,0.9);
+            margin-bottom: 2rem;
+        }
+        
+        /* Productos con Realidad Aumentada */
+        .productos-section {
+            padding: 5rem 2rem;
+            background-color: white;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: var(--negro-elegante);
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 100px;
+            height: 5px;
+            background: var(--rojo-carnicero);
+            margin: 1rem auto 0;
+        }
+        
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .product-card {
+            background: white;
             border-radius: 15px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-            transition: transform 0.3s;
-            margin-bottom: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            position: relative;
         }
         
-        .card:hover {
-            transform: translateY(-5px);
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
         }
         
-        .btn-primary {
-            background-color: var(--primary-color);
-            border-color: var(--primary-color);
-        }
-        
-        .btn-primary:hover {
-            background-color: var(--secondary-color);
-            border-color: var(--secondary-color);
-        }
-        
-        .whatsapp-btn {
-            background-color: var(--primary-color);
+        .product-badge {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: var(--rojo-carnicero);
             color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
             font-weight: bold;
+            z-index: 2;
         }
         
-        .whatsapp-btn:hover {
-            background-color: var(--secondary-color);
-            color: white;
+        .product-media {
+            height: 250px;
+            position: relative;
+            overflow: hidden;
         }
         
-        .product-img {
-            height: 180px;
+        .product-image {
+            width: 100%;
+            height: 100%;
             object-fit: cover;
-            border-top-left-radius: 15px;
-            border-top-right-radius: 15px;
+            transition: transform 0.5s ease;
         }
         
-        #cartItems {
-            max-height: 300px;
-            overflow-y: auto;
+        .product-card:hover .product-image {
+            transform: scale(1.1);
         }
         
-        .cart-item {
-            border-bottom: 1px solid #eee;
-            padding: 10px 0;
-        }
-        
-        .quantity-btn {
-            width: 30px;
-            height: 30px;
+        .ar-button {
+            position: absolute;
+            bottom: 1rem;
+            right: 1rem;
+            background: rgba(0,0,0,0.7);
+            color: white;
+            border: none;
+            width: 40px;
+            height: 40px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             cursor: pointer;
-            user-select: none;
+            z-index: 2;
+        }
+        
+        .product-info {
+            padding: 1.5rem;
+        }
+        
+        .product-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: var(--negro-elegante);
+        }
+        
+        .product-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+        
+        .product-price {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--rojo-carnicero);
+        }
+        
+        .product-actions {
+            display: flex;
+            gap: 0.5rem;
+        }
+        
+        .add-to-cart {
+            background: var(--rojo-carnicero);
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            font-weight: 600;
+            cursor: pointer;
+            flex-grow: 1;
+            transition: all 0.3s ease;
+        }
+        
+        .add-to-cart:hover {
+            background: #a00;
+        }
+        
+        /* Carrito con IA */
+        .cart-ai {
+            position: fixed;
+            top: 0;
+            right: -400px;
+            width: 400px;
+            height: 100vh;
+            background: white;
+            box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+            transition: right 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+            z-index: 1001;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .cart-ai.open {
+            right: 0;
+        }
+        
+        .cart-header {
+            padding: 1.5rem;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .cart-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+        
+        .close-cart {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
+        .cart-items {
+            flex-grow: 1;
+            overflow-y: auto;
+            padding: 1.5rem;
+        }
+        
+        .cart-item {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .cart-item-image {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 5px;
+        }
+        
+        .cart-item-details {
+            flex-grow: 1;
+        }
+        
+        .cart-item-title {
+            font-weight: 600;
+            margin-bottom: 0.3rem;
+        }
+        
+        .cart-item-price {
+            color: var(--rojo-carnicero);
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+        
+        .cart-item-actions {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .cart-item-quantity {
+            width: 50px;
+            text-align: center;
+            padding: 0.2rem;
+        }
+        
+        .remove-item {
+            background: none;
+            border: none;
+            color: #ff4444;
+            cursor: pointer;
+        }
+        
+        .cart-footer {
+            padding: 1.5rem;
+            border-top: 1px solid #eee;
+        }
+        
+        .cart-total {
+            display: flex;
+            justify-content: space-between;
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+        }
+        
+        .checkout-button {
+            width: 100%;
+            padding: 1rem;
+            background: var(--rojo-carnicero);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .checkout-button:hover {
+            background: #a00;
+        }
+        
+        /* Realidad Aumentada */
+        .ar-viewer {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.9);
+            z-index: 1002;
+            display: none;
+            flex-direction: column;
+        }
+        
+        .ar-header {
+            padding: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: white;
+        }
+        
+        .close-ar {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
+        .ar-container {
+            flex-grow: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .ar-instructions {
+            color: white;
+            text-align: center;
+            padding: 1rem;
+            font-size: 0.9rem;
+        }
+        
+        /* Notificaciones */
+        .notification {
+            position: fixed;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--rojo-carnicero);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 5px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            z-index: 1003;
+            animation: slideIn 0.3s ease-out;
+        }
+        
+        @keyframes slideIn {
+            from { bottom: -100px; opacity: 0; }
+            to { bottom: 2rem; opacity: 1; }
+        }
+        
+        /* WhatsApp Button */
+        .whatsapp-button {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: #25D366;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            z-index: 999;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+        
+        .whatsapp-button:hover {
+            transform: scale(1.1);
+            background: #128C7E;
+        }
+        
+        /* Responsive */
+        @media (max-width: 992px) {
+            .hero-title {
+                font-size: 3rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1.2rem;
+            }
+            
+            .product-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+            
+            .smart-menu {
+                gap: 1.5rem;
+            }
         }
         
         @media (max-width: 768px) {
-            .product-img {
-                height: 150px;
+            .nav-holografico {
+                flex-direction: column;
+                gap: 1rem;
             }
             
-            .card-title {
-                font-size: 1.1rem;
+            .hero-title {
+                font-size: 2.5rem;
             }
             
-            .navbar-brand {
-                font-size: 1.2rem;
+            .cart-ai {
+                width: 100%;
+                max-width: 400px;
+            }
+            
+            .smart-menu {
+                gap: 1rem;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .smart-menu a {
+                font-size: 0.9rem;
+            }
+            
+            .logo-meat {
+                font-size: 1.8rem;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .hero-title {
+                font-size: 2rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .product-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .cart-ai {
+                width: 100%;
+                max-width: none;
+            }
+            
+            .whatsapp-button {
+                width: 50px;
+                height: 50px;
+                font-size: 1.5rem;
+                bottom: 1rem;
+                right: 1rem;
+            }
+        }
+        
+        /* Mobile Menu */
+        .mobile-menu-button {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
+        @media (max-width: 768px) {
+            .mobile-menu-button {
+                display: block;
+            }
+            
+            .smart-menu {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                background: var(--negro-elegante);
+                position: absolute;
+                top: 100%;
+                left: 0;
+                padding: 1rem;
+                box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+            }
+            
+            .smart-menu.active {
+                display: flex;
+            }
+            
+            .smart-menu a {
+                padding: 0.8rem 0;
+                border-bottom: 1px solid rgba(255,255,255,0.1);
             }
         }
     </style>
 </head>
 <body>
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top shadow-sm">
-        <div class="container">
-            <a class="navbar-brand" href="#">
-                <i class="bi bi-cart4"></i> Mega Tienda
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
+    <!-- Header Cuántico -->
+    <header class="header-4d">
+        <div class="nav-holografico">
+            <div class="logo-meat">
+                <i class="fas fa-bone"></i> PrimeMeat
+            </div>
+            <button class="mobile-menu-button" id="mobileMenuButton">
+                <i class="fas fa-bars"></i>
             </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav me-auto">
-                    <li class="nav-item">
-                        <a class="nav-link active" href="#">Inicio</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Productos</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Contacto</a>
-                    </li>
-                </ul>
-                <button class="btn btn-primary position-relative" data-bs-toggle="modal" data-bs-target="#cartModal">
-                    <i class="bi bi-cart"></i> Carrito
-                    <span id="cartCount" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">0</span>
-                </button>
-            </div>
+            <nav class="smart-menu" id="smartMenu">
+                <a href="#cortes">Cortes Premium</a>
+                <a href="#paquetes">Paquetes</a>
+                <a href="#nosotros">Nosotros</a>
+                <a href="#contacto">Contacto</a>
+            </nav>
+            <button class="cart-button" id="cartButton">
+                <i class="fas fa-shopping-cart"></i>
+                <span class="cart-count">0</span>
+            </button>
         </div>
-    </nav>
+    </header>
 
-    <!-- Productos -->
-    <div class="container py-5">
-        <h2 class="text-center mb-4">Nuestros Productos</h2>
-        <div class="row">
+    <!-- Hero con Modelado 3D -->
+    <section class="hero-carnicero" style="background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://res.cloudinary.com/ddogfjbou/image/upload/v1746577507/costillas_fondo_spxgyv.jpg') center/cover no-repeat;">
+        <div class="hero-content">
+            <h1 class="hero-title">CARNE QUE INSPIRA</h1>
+            <p class="hero-subtitle">Cortes premium madurados a la perfección, entregados en tu puerta</p>
+            <button class="add-to-cart" style="padding: 1rem 2rem; font-size: 1.2rem;">EXPLORAR CORTES</button>
+        </div>
+    </section>
+
+    <!-- Productos con Realidad Aumentada -->
+    <section class="productos-section" id="cortes">
+        <h2 class="section-title">NUESTROS CORTES PREMIUM</h2>
+        <div class="product-grid">
             <!-- Producto 1 -->
-            <div class="col-md-4 col-sm-6 mb-4">
-                <div class="card h-100">
-                    <img src="https://via.placeholder.com/300x200?text=Producto+1" class="card-img-top product-img" alt="Producto 1">
-                    <div class="card-body">
-                        <h5 class="card-title">Producto Premium 1</h5>
-                        <p class="card-text">Descripción breve del producto premium número uno de nuestra tienda.</p>
-                        <p class="h5 text-primary">$19.99</p>
-                        <button class="btn btn-outline-primary w-100 add-to-cart" data-id="1" data-name="Producto Premium 1" data-price="19.99">Agregar al carrito</button>
+            <div class="product-card">
+                <div class="product-badge">NUEVO</div>
+                <div class="product-media">
+                    <img src="https://res.cloudinary.com/ddogfjbou/image/upload/v1746577507/costilla_jocas4.jpg" alt="Costilla Premium" class="product-image">
+                    <button class="ar-button" data-model="costilla">
+                        <i class="fas fa-cube"></i>
+                    </button>
+                </div>
+                <div class="product-info">
+                    <h3 class="product-title">Costilla Angus</h3>
+                    <div class="product-meta">
+                        <span class="product-price">$15,000/lb</span>
+                        <div class="product-actions">
+                            <button class="add-to-cart" data-id="1">Añadir</button>
+                        </div>
                     </div>
                 </div>
             </div>
-            
+
             <!-- Producto 2 -->
-            <div class="col-md-4 col-sm-6 mb-4">
-                <div class="card h-100">
-                    <img src="https://via.placeholder.com/300x200?text=Producto+2" class="card-img-top product-img" alt="Producto 2">
-                    <div class="card-body">
-                        <h5 class="card-title">Producto Estándar 2</h5>
-                        <p class="card-text">Descripción breve del producto estándar número dos de nuestra tienda.</p>
-                        <p class="h5 text-primary">$29.99</p>
-                        <button class="btn btn-outline-primary w-100 add-to-cart" data-id="2" data-name="Producto Estándar 2" data-price="29.99">Agregar al carrito</button>
+            <div class="product-card">
+                <div class="product-media">
+                    <img src="https://res.cloudinary.com/ddogfjbou/image/upload/v1746577505/chicharron_tmi0jr.jpg" alt="Chicharrón Artesanal" class="product-image">
+                    <button class="ar-button" data-model="chicharron">
+                        <i class="fas fa-cube"></i>
+                    </button>
+                </div>
+                <div class="product-info">
+                    <h3 class="product-title">Chicharrón Artesanal</h3>
+                    <div class="product-meta">
+                        <span class="product-price">$12,000/lb</span>
+                        <div class="product-actions">
+                            <button class="add-to-cart" data-id="2">Añadir</button>
+                        </div>
                     </div>
                 </div>
             </div>
-            
+
             <!-- Producto 3 -->
-            <div class="col-md-4 col-sm-6 mb-4">
-                <div class="card h-100">
-                    <img src="https://via.placeholder.com/300x200?text=Producto+3" class="card-img-top product-img" alt="Producto 3">
-                    <div class="card-body">
-                        <h5 class="card-title">Producto Básico 3</h5>
-                        <p class="card-text">Descripción breve del producto básico número tres de nuestra tienda.</p>
-                        <p class="h5 text-primary">$9.99</p>
-                        <button class="btn btn-outline-primary w-100 add-to-cart" data-id="3" data-name="Producto Básico 3" data-price="9.99">Agregar al carrito</button>
+            <div class="product-card">
+                <div class="product-badge">POPULAR</div>
+                <div class="product-media">
+                    <img src="https://res.cloudinary.com/ddogfjbou/image/upload/v1746577505/carne_facpmo.jpg" alt="Carne Selecta" class="product-image">
+                    <button class="ar-button" data-model="carne">
+                        <i class="fas fa-cube"></i>
+                    </button>
+                </div>
+                <div class="product-info">
+                    <h3 class="product-title">Carne Wagyu</h3>
+                    <div class="product-meta">
+                        <span class="product-price">$45,000/lb</span>
+                        <div class="product-actions">
+                            <button class="add-to-cart" data-id="3">Añadir</button>
+                        </div>
                     </div>
                 </div>
             </div>
-            
+
             <!-- Producto 4 -->
-            <div class="col-md-4 col-sm-6 mb-4">
-                <div class="card h-100">
-                    <img src="https://via.placeholder.com/300x200?text=Producto+4" class="card-img-top product-img" alt="Producto 4">
-                    <div class="card-body">
-                        <h5 class="card-title">Producto Deluxe 4</h5>
-                        <p class="card-text">Descripción breve del producto deluxe número cuatro de nuestra tienda.</p>
-                        <p class="h5 text-primary">$49.99</p>
-                        <button class="btn btn-outline-primary w-100 add-to-cart" data-id="4" data-name="Producto Deluxe 4" data-price="49.99">Agregar al carrito</button>
+            <div class="product-card">
+                <div class="product-media">
+                    <img src="https://res.cloudinary.com/ddogfjbou/image/upload/v1746577508/lomo_ptk8sx.jpg" alt="Lomo Premium" class="product-image">
+                    <button class="ar-button" data-model="lomo">
+                        <i class="fas fa-cube"></i>
+                    </button>
+                </div>
+                <div class="product-info">
+                    <h3 class="product-title">Lomo Dry-Aged</h3>
+                    <div class="product-meta">
+                        <span class="product-price">$32,000/lb</span>
+                        <div class="product-actions">
+                            <button class="add-to-cart" data-id="4">Añadir</button>
+                        </div>
                     </div>
                 </div>
             </div>
-            
+
             <!-- Producto 5 -->
-            <div class="col-md-4 col-sm-6 mb-4">
-                <div class="card h-100">
-                    <img src="https://via.placeholder.com/300x200?text=Producto+5" class="card-img-top product-img" alt="Producto 5">
-                    <div class="card-body">
-                        <h5 class="card-title">Producto Económico 5</h5>
-                        <p class="card-text">Descripción breve del producto económico número cinco de nuestra tienda.</p>
-                        <p class="h5 text-primary">$5.99</p>
-                        <button class="btn btn-outline-primary w-100 add-to-cart" data-id="5" data-name="Producto Económico 5" data-price="5.99">Agregar al carrito</button>
+            <div class="product-card">
+                <div class="product-media">
+                    <img src="https://res.cloudinary.com/ddogfjbou/image/upload/v1746577509/pesuna_ali9sz.jpg" alt="Pezuña Especial" class="product-image">
+                    <button class="ar-button" data-model="pesuna">
+                        <i class="fas fa-cube"></i>
+                    </button>
+                </div>
+                <div class="product-info">
+                    <h3 class="product-title">Pezuña Premium</h3>
+                    <div class="product-meta">
+                        <span class="product-price">$10,000/lb</span>
+                        <div class="product-actions">
+                            <button class="add-to-cart" data-id="5">Añadir</button>
+                        </div>
                     </div>
                 </div>
             </div>
-            
+
             <!-- Producto 6 -->
-            <div class="col-md-4 col-sm-6 mb-4">
-                <div class="card h-100">
-                    <img src="https://via.placeholder.com/300x200?text=Producto+6" class="card-img-top product-img" alt="Producto 6">
-                    <div class="card-body">
-                        <h5 class="card-title">Producto Popular 6</h5>
-                        <p class="card-text">Descripción breve del producto popular número seis de nuestra tienda.</p>
-                        <p class="h5 text-primary">$15.99</p>
-                        <button class="btn btn-outline-primary w-100 add-to-cart" data-id="6" data-name="Producto Popular 6" data-price="15.99">Agregar al carrito</button>
-                    </div>
+            <div class="product-card">
+                <div class="product-badge">OFERTA</div>
+                <div class="product-media">
+                    <img src="https://res.cloudinary.com/ddogfjbou/image/upload/v1746577508/lomo_ptk8sx.jpg" alt="Chuleta" class="product-image">
+                    <button class="ar-button" data-model="chuleta">
+                        <i class="fas fa-cube"></i>
+                    </button>
                 </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Modal del Carrito -->
-    <div class="modal fade" id="cartModal" tabindex="-1" aria-labelledby="cartModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="cartModalLabel">Tu Carrito de Compras</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <div id="cartItems" class="mb-3">
-                        <!-- Los items del carrito se agregarán aquí dinámicamente -->
-                        <div class="text-center py-4" id="emptyCartMessage">
-                            <i class="bi bi-cart-x" style="font-size: 3rem; color: #ccc;"></i>
-                            <p class="mt-2 text-muted">Tu carrito está vacío</p>
-                        </div>
-                    </div>
-                    
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="mb-3">
-                                <label for="customerName" class="form-label">Nombre completo</label>
-                                <input type="text" class="form-control" id="customerName" placeholder="Ingresa tu nombre">
-                            </div>
-                            <div class="mb-3">
-                                <label for="customerPhone" class="form-label">Teléfono (WhatsApp)</label>
-                                <input type="tel" class="form-control" id="customerPhone" placeholder="Ingresa tu número">
-                            </div>
-                            <div class="mb-3">
-                                <label for="customerAddress" class="form-label">Dirección de envío</label>
-                                <textarea class="form-control" id="customerAddress" rows="2" placeholder="Ingresa tu dirección"></textarea>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="card">
-                                <div class="card-body">
-                                    <h5 class="card-title">Resumen del Pedido</h5>
-                                    <div class="d-flex justify-content-between mb-2">
-                                        <span>Subtotal:</span>
-                                        <span id="subtotal">$0.00</span>
-                                    </div>
-                                    <div class="d-flex justify-content-between mb-2">
-                                        <span>Envío:</span>
-                                        <span id="shipping">$5.00</span>
-                                    </div>
-                                    <hr>
-                                    <div class="d-flex justify-content-between fw-bold">
-                                        <span>Total:</span>
-                                        <span id="total">$5.00</span>
-                                    </div>
-                                </div>
-                            </div>
+                <div class="product-info">
+                    <h3 class="product-title">Chuleta de Cerdo</h3>
+                    <div class="product-meta">
+                        <span class="product-price">$18,000/lb</span>
+                        <div class="product-actions">
+                            <button class="add-to-cart" data-id="6">Añadir</button>
                         </div>
                     </div>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Seguir comprando</button>
-                    <button type="button" class="btn btn-primary" id="checkoutBtn" disabled>Finalizar Pedido</button>
-                </div>
             </div>
+        </div>
+    </section>
+
+    <!-- Carrito con IA -->
+    <div class="cart-ai" id="cartAI">
+        <div class="cart-header">
+            <h3 class="cart-title">Tu Carrito</h3>
+            <button class="close-cart" id="closeCart">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="cart-items" id="cartItems">
+            <!-- Los items del carrito se añadirán aquí dinámicamente -->
+            <p class="empty-cart-message">Tu carrito está vacío</p>
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span>Total:</span>
+                <span id="cartTotal">$0</span>
+            </div>
+            <button class="checkout-button" id="checkoutButton">Finalizar Compra</button>
         </div>
     </div>
 
-    <!-- Modal de Confirmación -->
-    <div class="modal fade" id="confirmationModal" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">¡Pedido Confirmado!</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body text-center">
-                    <div class="mb-3">
-                        <i class="bi bi-check-circle-fill text-success" style="font-size: 3rem;"></i>
-                    </div>
-                    <p>Tu pedido ha sido procesado correctamente.</p>
-                    <p>Serás redirigido a WhatsApp para confirmar los detalles.</p>
-                </div>
-                <div class="modal-footer justify-content-center">
-                    <button type="button" class="btn btn-primary" id="goToWhatsAppBtn">Ir a WhatsApp</button>
-                </div>
+    <!-- Realidad Aumentada -->
+    <div class="ar-viewer" id="arViewer">
+        <div class="ar-header">
+            <h3>Vista AR</h3>
+            <button class="close-ar" id="closeAR">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="ar-container">
+            <!-- Aquí iría el visor AR -->
+            <div style="color: white; text-align: center;">
+                <i class="fas fa-cube" style="font-size: 5rem; margin-bottom: 1rem;"></i>
+                <p>Escanea tu entorno para colocar el producto</p>
             </div>
+        </div>
+        <div class="ar-instructions">
+            Mueve tu dispositivo lentamente para detectar superficies
         </div>
     </div>
 
-    <!-- Footer -->
-    <footer class="bg-dark text-white py-4 mt-5">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-4">
-                    <h5>Mega Tienda</h5>
-                    <p>La mejor selección de productos al mejor precio.</p>
-                </div>
-                <div class="col-md-4">
-                    <h5>Contacto</h5>
-                    <p><i class="bi bi-envelope"></i> info@megatienda.com</p>
-                    <p><i class="bi bi-phone"></i> +1 234 567 890</p>
-                </div>
-                <div class="col-md-4">
-                    <h5>Síguenos</h5>
-                    <a href="#" class="text-white me-2"><i class="bi bi-facebook"></i></a>
-                    <a href="#" class="text-white me-2"><i class="bi bi-instagram"></i></a>
-                    <a href="#" class="text-white me-2"><i class="bi bi-twitter"></i></a>
-                </div>
-            </div>
-            <hr>
-            <div class="text-center">
-                <p class="mb-0">&copy; 2023 Mega Tienda. Todos los derechos reservados.</p>
-            </div>
-        </div>
-    </footer>
+    <!-- Botón de WhatsApp -->
+    <a href="https://wa.me/573001234567?text=Hola%20PrimeMeat,%20quiero%20hacer%20un%20pedido" class="whatsapp-button" id="whatsappButton" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
-    
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Variables globales
-            let cart = [];
-            const whatsappNumber = "5491112345678"; // Reemplazar con tu número de WhatsApp
-            const companyName = "Mega Tienda";
-            
-            // Elementos del DOM
-            const cartCountElement = document.getElementById('cartCount');
-            const cartItemsElement = document.getElementById('cartItems');
-            const emptyCartMessage = document.getElementById('emptyCartMessage');
-            const subtotalElement = document.getElementById('subtotal');
-            const shippingElement = document.getElementById('shipping');
-            const totalElement = document.getElementById('total');
-            const checkoutBtn = document.getElementById('checkoutBtn');
-            const goToWhatsAppBtn = document.getElementById('goToWhatsAppBtn');
-            
-            // Event listeners
-            document.querySelectorAll('.add-to-cart').forEach(button => {
-                button.addEventListener('click', addToCart);
-            });
-            
-            checkoutBtn.addEventListener('click', checkout);
-            goToWhatsAppBtn.addEventListener('click', goToWhatsApp);
-            
-            // Funciones
-            function addToCart(e) {
-                const button = e.target;
-                const id = parseInt(button.getAttribute('data-id'));
-                const name = button.getAttribute('data-name');
-                const price = parseFloat(button.getAttribute('data-price'));
+        // Carrito de compras
+        let cart = [];
+        const cartButton = document.getElementById('cartButton');
+        const cartAI = document.getElementById('cartAI');
+        const closeCart = document.getElementById('closeCart');
+        const cartItems = document.getElementById('cartItems');
+        const cartTotal = document.getElementById('cartTotal');
+        const cartCount = document.querySelector('.cart-count');
+        const checkoutButton = document.getElementById('checkoutButton');
+        const whatsappButton = document.getElementById('whatsappButton');
+        
+        // Menú móvil
+        const mobileMenuButton = document.getElementById('mobileMenuButton');
+        const smartMenu = document.getElementById('smartMenu');
+        
+        // Realidad Aumentada
+        const arButtons = document.querySelectorAll('.ar-button');
+        const arViewer = document.getElementById('arViewer');
+        const closeAR = document.getElementById('closeAR');
+        
+        // Añadir al carrito
+        document.querySelectorAll('.add-to-cart').forEach(button => {
+            button.addEventListener('click', () => {
+                const productCard = button.closest('.product-card');
+                const productId = button.getAttribute('data-id');
+                const productTitle = productCard.querySelector('.product-title').textContent;
+                const productPrice = parseFloat(productCard.querySelector('.product-price').textContent.replace(/[^0-9.-]+/g,""));
+                const productImage = productCard.querySelector('.product-image').src;
                 
                 // Verificar si el producto ya está en el carrito
-                const existingItem = cart.find(item => item.id === id);
+                const existingItem = cart.find(item => item.id === productId);
                 
                 if (existingItem) {
                     existingItem.quantity += 1;
                 } else {
                     cart.push({
-                        id,
-                        name,
-                        price,
+                        id: productId,
+                        title: productTitle,
+                        price: productPrice,
+                        image: productImage,
                         quantity: 1
                     });
                 }
                 
                 updateCart();
-                
-                // Mostrar notificación
-                Swal.fire({
-                    position: 'top-end',
-                    icon: 'success',
-                    title: 'Producto agregado',
-                    showConfirmButton: false,
-                    timer: 1000
-                });
-            }
-            
-            function updateCart() {
-                // Actualizar contador del carrito
-                const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
-                cartCountElement.textContent = totalItems;
-                
-                // Mostrar/ocultar mensaje de carrito vacío
-                if (cart.length === 0) {
-                    emptyCartMessage.style.display = 'block';
-                    checkoutBtn.disabled = true;
-                } else {
-                    emptyCartMessage.style.display = 'none';
-                    checkoutBtn.disabled = false;
-                }
-                
-                // Actualizar lista de productos en el carrito
-                cartItemsElement.innerHTML = '';
-                
+                showNotification(`${productTitle} añadido al carrito`);
+            });
+        });
+        
+        // Actualizar carrito
+        function updateCart() {
+            // Actualizar interfaz
+            if (cart.length === 0) {
+                cartItems.innerHTML = '<p class="empty-cart-message">Tu carrito está vacío</p>';
+            } else {
+                cartItems.innerHTML = '';
                 cart.forEach(item => {
-                    const itemElement = document.createElement('div');
-                    itemElement.className = 'cart-item';
-                    itemElement.innerHTML = `
-                        <div class="row align-items-center">
-                            <div class="col-md-5">
-                                <h6 class="mb-0">${item.name}</h6>
-                                <small class="text-muted">$${item.price.toFixed(2)} c/u</small>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="d-flex align-items-center">
-                                    <div class="quantity-btn bg-light" onclick="changeQuantity(${item.id}, -1)">-</div>
-                                    <span class="mx-2">${item.quantity}</span>
-                                    <div class="quantity-btn bg-light" onclick="changeQuantity(${item.id}, 1)">+</div>
-                                </div>
-                            </div>
-                            <div class="col-md-2 text-end">
-                                <span>$${(item.price * item.quantity).toFixed(2)}</span>
-                            </div>
-                            <div class="col-md-1 text-end">
-                                <button class="btn btn-sm btn-outline-danger" onclick="removeFromCart(${item.id})">
-                                    <i class="bi bi-trash"></i>
+                    const cartItemElement = document.createElement('div');
+                    cartItemElement.className = 'cart-item';
+                    cartItemElement.innerHTML = `
+                        <img src="${item.image}" alt="${item.title}" class="cart-item-image">
+                        <div class="cart-item-details">
+                            <h4 class="cart-item-title">${item.title}</h4>
+                            <p class="cart-item-price">$${(item.price * item.quantity).toLocaleString()}</p>
+                            <div class="cart-item-actions">
+                                <input type="number" min="1" value="${item.quantity}" class="cart-item-quantity" data-id="${item.id}">
+                                <button class="remove-item" data-id="${item.id}">
+                                    <i class="fas fa-trash"></i>
                                 </button>
                             </div>
                         </div>
                     `;
-                    cartItemsElement.appendChild(itemElement);
+                    cartItems.appendChild(cartItemElement);
                 });
                 
-                // Actualizar totales
-                updateTotals();
-            }
-            
-            function updateTotals() {
-                const subtotal = cart.reduce((total, item) => total + (item.price * item.quantity), 0);
-                const shipping = 5.00; // Costo fijo de envío
-                const total = subtotal + shipping;
-                
-                subtotalElement.textContent = `$${subtotal.toFixed(2)}`;
-                shippingElement.textContent = `$${shipping.toFixed(2)}`;
-                totalElement.textContent = `$${total.toFixed(2)}`;
-            }
-            
-            function changeQuantity(id, change) {
-                const item = cart.find(item => item.id === id);
-                
-                if (item) {
-                    item.quantity += change;
-                    
-                    // Eliminar el producto si la cantidad es 0 o menos
-                    if (item.quantity <= 0) {
-                        cart = cart.filter(item => item.id !== id);
-                    }
-                    
-                    updateCart();
-                }
-            }
-            
-            function removeFromCart(id) {
-                cart = cart.filter(item => item.id !== id);
-                updateCart();
-            }
-            
-            function checkout() {
-                const customerName = document.getElementById('customerName').value.trim();
-                const customerPhone = document.getElementById('customerPhone').value.trim();
-                const customerAddress = document.getElementById('customerAddress').value.trim();
-                
-                // Validar campos
-                if (!customerName || !customerPhone || !customerAddress) {
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'Campos incompletos',
-                        text: 'Por favor completa todos los campos antes de finalizar el pedido.'
+                // Agregar eventos a los nuevos elementos
+                document.querySelectorAll('.cart-item-quantity').forEach(input => {
+                    input.addEventListener('change', (e) => {
+                        const id = e.target.getAttribute('data-id');
+                        const quantity = parseInt(e.target.value);
+                        const item = cart.find(item => item.id === id);
+                        
+                        if (item && quantity > 0) {
+                            item.quantity = quantity;
+                            updateCart();
+                        }
                     });
-                    return;
-                }
-                
-                // Mostrar modal de confirmación
-                const confirmationModal = new bootstrap.Modal(document.getElementById('confirmationModal'));
-                const cartModal = bootstrap.Modal.getInstance(document.getElementById('cartModal'));
-                cartModal.hide();
-                confirmationModal.show();
-            }
-            
-            function goToWhatsApp() {
-                const customerName = document.getElementById('customerName').value.trim();
-                const customerPhone = document.getElementById('customerPhone').value.trim();
-                const customerAddress = document.getElementById('customerAddress').value.trim();
-                
-                // Crear mensaje para WhatsApp
-                let message = `¡Hola ${companyName}!%0A%0A`;
-                message += `Mi nombre es: ${customerName}%0A`;
-                message += `Mi número de teléfono es: ${customerPhone}%0A`;
-                message += `Mi dirección es: ${customerAddress}%0A%0A`;
-                message += `Aquí está mi pedido:%0A%0A`;
-                
-                cart.forEach(item => {
-                    message += `- ${item.name} x${item.quantity} - $${(item.price * item.quantity).toFixed(2)}%0A`;
                 });
                 
-                message += `%0A*Subtotal:* $${subtotalElement.textContent.substring(1)}%0A`;
-                message += `*Envío:* $${shippingElement.textContent.substring(1)}%0A`;
-                message += `*Total:* $${totalElement.textContent.substring(1)}%0A%0A`;
-                message += `Por favor confírmenme el pedido. ¡Gracias!`;
-                
-                // Redirigir a WhatsApp
-                const whatsappUrl = `https://wa.me/${573246153591}?text=${message}`;
-                window.open(whatsappUrl, '_blank');
-                
-                // Limpiar carrito y cerrar modal
-                cart = [];
-                updateCart();
-                document.getElementById('customerName').value = '';
-                document.getElementById('customerPhone').value = '';
-                document.getElementById('customerAddress').value = '';
-                
-                const confirmationModal = bootstrap.Modal.getInstance(document.getElementById('confirmationModal'));
-                confirmationModal.hide();
+                document.querySelectorAll('.remove-item').forEach(button => {
+                    button.addEventListener('click', (e) => {
+                        const id = e.target.closest('button').getAttribute('data-id');
+                        cart = cart.filter(item => item.id !== id);
+                        updateCart();
+                        showNotification('Producto eliminado');
+                    });
+                });
             }
             
-            // Hacer las funciones accesibles globalmente para los botones en el HTML
-            window.changeQuantity = changeQuantity;
-            window.removeFromCart = removeFromCart;
+            // Calcular total
+            const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            cartTotal.textContent = `$${total.toLocaleString()}`;
+            cartCount.textContent = cart.reduce((sum, item) => sum + item.quantity, 0);
+            
+            // Guardar en localStorage
+            localStorage.setItem('cart', JSON.stringify(cart));
+            
+            // Actualizar enlace de WhatsApp
+            updateWhatsAppLink();
+        }
+        
+        // Actualizar enlace de WhatsApp con el pedido
+        function updateWhatsAppLink() {
+            if (cart.length === 0) return;
+            
+            let message = "Hola PrimeMeat, quiero hacer el siguiente pedido:\n\n";
+            cart.forEach(item => {
+                message += `- ${item.title} (${item.quantity} x $${item.price.toLocaleString()}) = $${(item.price * item.quantity).toLocaleString()}\n`;
+            });
+            
+            const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            message += `\nTotal: $${total.toLocaleString()}\n\nGracias!`;
+            
+            // Codificar el mensaje para URL
+            const encodedMessage = encodeURIComponent(message);
+            whatsappButton.href = `https://wa.me/573001234567?text=${encodedMessage}`;
+        }
+        
+        // Finalizar compra
+        checkoutButton.addEventListener('click', () => {
+            if (cart.length === 0) {
+                showNotification('Tu carrito está vacío');
+                return;
+            }
+            
+            // Abrir WhatsApp con el pedido
+            window.open(whatsappButton.href, '_blank');
+            
+            // Vaciar el carrito
+            cart = [];
+            updateCart();
+            cartAI.classList.remove('open');
+            
+            showNotification('Pedido enviado por WhatsApp');
         });
+        
+        // Mostrar notificación
+        function showNotification(message) {
+            const notification = document.createElement('div');
+            notification.className = 'notification';
+            notification.textContent = message;
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.remove();
+            }, 3000);
+        }
+        
+        // Cargar carrito al iniciar
+        if (localStorage.getItem('cart')) {
+            cart = JSON.parse(localStorage.getItem('cart'));
+            updateCart();
+        }
+        
+        // Eventos del carrito
+        cartButton.addEventListener('click', () => {
+            cartAI.classList.add('open');
+        });
+        
+        closeCart.addEventListener('click', () => {
+            cartAI.classList.remove('open');
+        });
+        
+        // Menú móvil
+        mobileMenuButton.addEventListener('click', () => {
+            smartMenu.classList.toggle('active');
+        });
+        
+        // Cerrar menú al hacer clic en un enlace
+        document.querySelectorAll('.smart-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                smartMenu.classList.remove('active');
+            });
+        });
+        
+        // Realidad Aumentada
+        arButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const model = button.getAttribute('data-model');
+                // Aquí normalmente cargarías el modelo 3D correspondiente
+                arViewer.style.display = 'flex';
+            });
+        });
+        
+        closeAR.addEventListener('click', () => {
+            arViewer.style.display = 'none';
+        });
+        
+        // Efectos especiales
+        document.querySelectorAll('.product-card').forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const x = e.clientX - card.getBoundingClientRect().left;
+                const y = e.clientY - card.getBoundingClientRect().top;
+                
+                const centerX = card.offsetWidth / 2;
+                const centerY = card.offsetHeight / 2;
+                
+                const angleX = (y - centerY) / 20;
+                const angleY = (centerX - x) / 20;
+                
+                card.style.transform = `perspective(1000px) rotateX(${angleX}deg) rotateY(${angleY}deg)`;
+            });
+            
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0)';
+            });
+        });
+        
+        // Detectar si es móvil y ajustar comportamientos
+        function isMobile() {
+            return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+        }
+        
+        if (isMobile()) {
+            // Ajustes específicos para móviles
+            document.querySelectorAll('.product-card').forEach(card => {
+                card.style.transform = 'none';
+                card.style.transition = 'none';
+            });
+        }
     </script>
 </body>
 </html>
