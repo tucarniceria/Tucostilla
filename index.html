@@ -10,9 +10,6 @@
             --rojo-carnicero: #c00;
             --negro-elegante: #1a1a1a;
             --blanco-hueso: #f9f5f0;
-            --base-font-size: 16px;
-            --transition-time: 0.3s;
-            --hover-effect: all;
         }
         
         * {
@@ -20,7 +17,6 @@
             padding: 0;
             box-sizing: border-box;
             font-family: 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            font-size: var(--base-font-size);
         }
         
         body {
@@ -107,7 +103,6 @@
             color: white;
             margin-bottom: 1rem;
             text-shadow: 0 5px 15px rgba(0,0,0,0.5);
-            transition: font-size var(--transition-time) ease;
         }
         
         .hero-subtitle {
@@ -144,7 +139,6 @@
             gap: 2rem;
             max-width: 1400px;
             margin: 0 auto;
-            transition: all var(--transition-time) ease;
         }
         
         .product-card {
@@ -152,7 +146,7 @@
             border-radius: 15px;
             overflow: hidden;
             box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            transition: var(--hover-effect) var(--transition-time) cubic-bezier(0.25, 0.8, 0.25, 1);
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
             position: relative;
         }
         
@@ -625,7 +619,7 @@
                 <i class="fas fa-bars"></i>
             </button>
             <nav class="smart-menu" id="smartMenu">
-                <a href="#cortes">Cortes Premium</a>
+                <a href="#cortes">Productos</a>
                 <a href="#paquetes">Paquetes</a>
                 <a href="#nosotros">Nosotros</a>
                 <a href="#contacto">Contacto</a>
@@ -640,18 +634,18 @@
     <section class="hero-carnicero" style="background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://res.cloudinary.com/ddogfjbou/image/upload/v1746577507/costillas_fondo_spxgyv.jpg') center/cover no-repeat;">
         <div class="hero-content">
             <h1 class="hero-title">CARNE QUE INSPIRA</h1>
-            <p class="hero-subtitle">Cortes premium madurados a la perfección, entregados en tu puerta</p>
+            <p class="hero-subtitle"> DEL CAMPO A TU MESA </p>
             <button class="add-to-cart" style="padding: 1rem 2rem; font-size: 1.2rem;">EXPLORAR CORTES</button>
         </div>
     </section>
 
     <section class="productos-section" id="cortes">
-        <h2 class="section-title">NUESTROS CORTES PREMIUM</h2>
+        <h2 class="section-title">NUESTROS PRODUCTOS</h2>
         <div class="product-grid">
             <div class="product-card">
                 <div class="product-badge">NUEVO</div>
                 <div class="product-media">
-                    <img data-src="https://res.cloudinary.com/ddogfjbou/image/upload/v1746577507/costilla_jocas4.jpg" alt="Costilla Premium" class="product-image">
+                    <img src="https://res.cloudinary.com/ddogfjbou/image/upload/v1746577507/costilla_jocas4.jpg" alt="Costilla Premium" class="product-image">
                     <button class="ar-button" data-model="costilla">
                         <i class="fas fa-cube"></i>
                     </button>
@@ -659,7 +653,7 @@
                 <div class="product-info">
                     <h3 class="product-title">Costilla </h3>
                     <div class="product-meta">
-                        <span class="product-price">$15,000/lb</span>
+                        <span class="product-price">$10,500/lb</span>
                         <div class="product-actions">
                             <button class="add-to-cart" data-id="1">Añadir</button>
                         </div>
@@ -669,15 +663,15 @@
 
             <div class="product-card">
                 <div class="product-media">
-                    <img data-src="https://res.cloudinary.com/ddogfjbou/image/upload/v1746577505/chicharron_tmi0jr.jpg" alt="Chicharrón Artesanal" class="product-image">
+                    <img src="https://res.cloudinary.com/ddogfjbou/image/upload/v1746577505/chicharron_tmi0jr.jpg" alt="Chicharrón Artesanal" class="product-image">
                     <button class="ar-button" data-model="chicharron">
                         <i class="fas fa-cube"></i>
                     </button>
                 </div>
                 <div class="product-info">
-                    <h3 class="product-title">Chicharrón Artesanal</h3>
+                    <h3 class="product-title">Chicharrón </h3>
                     <div class="product-meta">
-                        <span class="product-price">$12,000/lb</span>
+                        <span class="product-price">$10,500/lb</span>
                         <div class="product-actions">
                             <button class="add-to-cart" data-id="2">Añadir</button>
                         </div>
@@ -688,15 +682,15 @@
             <div class="product-card">
                 <div class="product-badge">POPULAR</div>
                 <div class="product-media">
-                    <img data-src="https://res.cloudinary.com/ddogfjbou/image/upload/v1746577505/carne_facpmo.jpg" alt="Carne Selecta" class="product-image">
+                    <img src="https://res.cloudinary.com/ddogfjbou/image/upload/v1746577505/carne_facpmo.jpg" alt="Carne Selecta" class="product-image">
                     <button class="ar-button" data-model="carne">
                         <i class="fas fa-cube"></i>
                     </button>
                 </div>
                 <div class="product-info">
-                    <h3 class="product-title">Carne Wagyu</h3>
+                    <h3 class="product-title">Carne </h3>
                     <div class="product-meta">
-                        <span class="product-price">$45,000/lb</span>
+                        <span class="product-price">$10,500/lb</span>
                         <div class="product-actions">
                             <button class="add-to-cart" data-id="3">Añadir</button>
                         </div>
@@ -706,15 +700,15 @@
 
             <div class="product-card">
                 <div class="product-media">
-                    <img data-src="https://res.cloudinary.com/ddogfjbou/image/upload/v1746577508/lomo_ptk8sx.jpg" alt="Lomo Premium" class="product-image">
+                    <img src="https://res.cloudinary.com/ddogfjbou/image/upload/v1746577508/lomo_ptk8sx.jpg" alt="Lomo Premium" class="product-image">
                     <button class="ar-button" data-model="lomo">
                         <i class="fas fa-cube"></i>
                     </button>
                 </div>
                 <div class="product-info">
-                    <h3 class="product-title">Lomo Dry-Aged</h3>
+                    <h3 class="product-title">Lomo </h3>
                     <div class="product-meta">
-                        <span class="product-price">$32,000/lb</span>
+                        <span class="product-price">$10,500/lb</span>
                         <div class="product-actions">
                             <button class="add-to-cart" data-id="4">Añadir</button>
                         </div>
@@ -724,15 +718,15 @@
 
             <div class="product-card">
                 <div class="product-media">
-                    <img data-src="https://res.cloudinary.com/ddogfjbou/image/upload/v1746577509/pesuna_ali9sz.jpg" alt="Pezuña Especial" class="product-image">
+                    <img src="https://res.cloudinary.com/ddogfjbou/image/upload/v1746577509/pesuna_ali9sz.jpg" alt="Pezuña Especial" class="product-image">
                     <button class="ar-button" data-model="pesuna">
                         <i class="fas fa-cube"></i>
                     </button>
                 </div>
                 <div class="product-info">
-                    <h3 class="product-title">Pezuña Premium</h3>
+                    <h3 class="product-title">Pezuña </h3>
                     <div class="product-meta">
-                        <span class="product-price">$10,000/lb</span>
+                        <span class="product-price">$5,500/lb</span>
                         <div class="product-actions">
                             <button class="add-to-cart" data-id="5">Añadir</button>
                         </div>
@@ -743,7 +737,7 @@
             <div class="product-card">
                 <div class="product-badge">OFERTA</div>
                 <div class="product-media">
-                    <img data-src="https://res.cloudinary.com/ddogfjbou/image/upload/v1746577508/lomo_ptk8sx.jpg" alt="Chuleta" class="product-image">
+                    <img src="https://res.cloudinary.com/ddogfjbou/image/upload/v1746577508/lomo_ptk8sx.jpg" alt="Chuleta" class="product-image">
                     <button class="ar-button" data-model="chuleta">
                         <i class="fas fa-cube"></i>
                     </button>
@@ -751,7 +745,7 @@
                 <div class="product-info">
                     <h3 class="product-title">Chuleta de Cerdo</h3>
                     <div class="product-meta">
-                        <span class="product-price">$18,000/lb</span>
+                        <span class="product-price">$10,500/lb</span>
                         <div class="product-actions">
                             <button class="add-to-cart" data-id="6">Añadir</button>
                         </div>
@@ -821,154 +815,6 @@
     </div>
 
     <script>
-        // =============================================
-        // IA de Diseño Responsivo Automático
-        // =============================================
-        class ResponsiveAI {
-            constructor() {
-                this.deviceProfile = this.detectDevice();
-                this.optimizationRules = {
-                    mobile: { fontSize: 14, imageQuality: 0.8, animations: false },
-                    tablet: { fontSize: 16, imageQuality: 0.9, animations: true },
-                    desktop: { fontSize: 18, imageQuality: 1, animations: true }
-                };
-                this.applyOptimizations();
-            }
-
-            detectDevice() {
-                const ua = navigator.userAgent;
-                const width = window.innerWidth;
-                
-                if (width < 768 || /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(ua)) {
-                    return 'mobile';
-                } else if (width >= 768 && width < 1024) {
-                    return 'tablet';
-                } else {
-                    return 'desktop';
-                }
-            }
-
-            applyOptimizations() {
-                const rules = this.optimizationRules[this.deviceProfile];
-                
-                document.documentElement.style.setProperty('--base-font-size', `${rules.fontSize}px`);
-                
-                if (rules.imageQuality < 1) {
-                    this.optimizeImages(rules.imageQuality);
-                }
-                
-                if (!rules.animations) {
-                    this.disableAnimations();
-                }
-            }
-
-            optimizeImages(quality) {
-                const images = document.querySelectorAll('img[data-src]');
-                images.forEach(img => {
-                    img.src = `${img.dataset.src}?q=${quality * 100}&w=${Math.min(window.innerWidth, 1000)}`;
-                });
-            }
-
-            disableAnimations() {
-                document.documentElement.style.setProperty('--transition-time', '0.01s');
-                document.documentElement.style.setProperty('--hover-effect', 'none');
-            }
-        }
-
-        // =============================================
-        // IA de Componentes Adaptables
-        // =============================================
-        class AdaptiveComponentsAI {
-            constructor() {
-                this.components = {
-                    productGrid: {
-                        mobile: { cols: 1, gap: '1rem' },
-                        tablet: { cols: 2, gap: '1.5rem' },
-                        desktop: { cols: 4, gap: '2rem' }
-                    },
-                    heroSection: {
-                        mobile: { height: '60vh', fontSize: '2rem' },
-                        desktop: { height: '80vh', fontSize: '4rem' }
-                    }
-                };
-                this.adaptComponents();
-            }
-
-            adaptComponents() {
-                const deviceType = new ResponsiveAI().deviceProfile;
-                
-                const grid = document.querySelector('.product-grid');
-                if (grid) {
-                    const gridConfig = this.components.productGrid[deviceType] || 
-                                      this.components.productGrid.desktop;
-                    grid.style.gridTemplateColumns = `repeat(${gridConfig.cols}, 1fr)`;
-                    grid.style.gap = gridConfig.gap;
-                }
-                
-                const hero = document.querySelector('.hero-carnicero');
-                if (hero) {
-                    const heroConfig = this.components.heroSection[deviceType] || 
-                                      this.components.heroSection.desktop;
-                    if (heroConfig) {
-                        hero.style.height = heroConfig.height;
-                        const heroTitle = document.querySelector('.hero-title');
-                        if (heroTitle) heroTitle.style.fontSize = heroConfig.fontSize;
-                    }
-                }
-            }
-        }
-
-        // =============================================
-        // IA de Aprendizaje de Usuario
-        // =============================================
-        class UserBehaviorAI {
-            constructor() {
-                this.userPreferences = JSON.parse(localStorage.getItem('userPrefs')) || {};
-                this.observeBehavior();
-            }
-
-            observeBehavior() {
-                document.addEventListener('click', (e) => {
-                    this.recordInteraction(e.target);
-                });
-                
-                let lastScrollPosition = 0;
-                window.addEventListener('scroll', () => {
-                    const currentScroll = window.scrollY;
-                    if (currentScroll > lastScrollPosition) {
-                        this.userPreferences.scrollDirection = 'down';
-                    } else {
-                        this.userPreferences.scrollDirection = 'up';
-                    }
-                    lastScrollPosition = currentScroll;
-                    localStorage.setItem('userPrefs', JSON.stringify(this.userPreferences));
-                });
-            }
-
-            recordInteraction(element) {
-                if (element.classList.contains('add-to-cart')) {
-                    const productCard = element.closest('.product-card');
-                    if (productCard) {
-                        const productTitle = productCard.querySelector('.product-title');
-                        if (productTitle) {
-                            this.userPreferences.favCategory = productTitle.textContent;
-                            localStorage.setItem('userPrefs', JSON.stringify(this.userPreferences));
-                        }
-                    }
-                }
-            }
-
-            getRecommendations() {
-                if (this.userPreferences.favCategory) {
-                    console.log(`IA PrimeMeat: Recomendando más productos como ${this.userPreferences.favCategory}`);
-                }
-                return null;
-            }
-        }
-
-        // =============================================
-        // Código Original de PrimeMeat
-        // =============================================
         let cart = [];
         const cartButton = document.getElementById('cartButton');
         const cartAI = document.getElementById('cartAI');
@@ -1081,42 +927,43 @@
             confirmationModal.style.display = 'none';
         });
 
-        confirmOrder.addEventListener('click', () => {
-            if (!customerName.value.trim() || !customerPhone.value.trim()) {
-                showNotification('Por favor completa los campos obligatorios');
-                return;
-            }
+       confirmOrder.addEventListener('click', () => {
+    if (!customerName.value.trim() || !customerPhone.value.trim()) {
+        showNotification('Por favor completa los campos obligatorios');
+        return;
+    }
 
-            let message = `*🍖 PRIMEMEAT - DEL CAMPO A TU MESA* 🏡\n\n`;
-            message += `*🧑‍🍳 Cliente Premium:* ${customerName.value.trim()}\n`;
-            message += `*📱 Contacto:* ${customerPhone.value.trim()}\n\n`;
-            message += `*🛒 Detalle del Pedido:*\n`;
-            
-            cart.forEach(item => {
-                message += `▫️ *${item.title}*\n   - Cantidad: ${item.quantity}\n   - Valor: $${item.price.toLocaleString()}\n`;
-            });
-            
-            const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-            message += `\n*💰 Total a pagar:* $${total.toLocaleString()}\n\n`;
-            message += `*✨ Gracias por elegir PrimeMeat* 🎩\n`;
-            message += `_Su pedido será preparado con los más altos estándares de calidad_`;
-            
-            const encodedMessage = encodeURIComponent(message);
-            const whatsappUrl = `https://wa.me/573246453591?text=${encodedMessage}`;
-            
-            window.open(whatsappUrl, '_blank');
-            
-            setTimeout(() => {
-                cart = [];
-                updateCart();
-                cartAI.classList.remove('open');
-                confirmationModal.style.display = 'none';
-                customerName.value = '';
-                customerPhone.value = '';
-                referralCode.value = '';
-            }, 1000);
-        });
-
+    // Formato simplificado del mensaje
+    let message = `*NUEVO PEDIDO*\n\n`;
+    message += `*Cliente:* ${customerName.value.trim()}\n`;
+    message += `*Teléfono:* ${customerPhone.value.trim()}\n\n`;
+    message += `*Productos:*\n`;
+    
+    cart.forEach(item => {
+        message += `- ${item.title} (${item.quantity} x $${item.price.toLocaleString()})\n`;
+    });
+    
+    const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+    message += `\n*Total:* $${total.toLocaleString()}\n\n`;
+    message += `¡Gracias por su pedido!`;
+    
+    const encodedMessage = encodeURIComponent(message);
+    const whatsappUrl = `https://wa.me/573246453591?text=${encodedMessage}`;
+    
+    // Abrir en nueva pestaña
+    window.open(whatsappUrl, '_blank');
+    
+    // Limpiar carrito y formulario
+    setTimeout(() => {
+        cart = [];
+        updateCart();
+        cartAI.classList.remove('open');
+        confirmationModal.style.display = 'none';
+        customerName.value = '';
+        customerPhone.value = '';
+        referralCode.value = '';
+    }, 1000);
+});
         function showNotification(message) {
             const notification = document.createElement('div');
             notification.className = 'notification';
@@ -1191,27 +1038,6 @@
                 card.style.transition = 'none';
             });
         }
-
-        // =============================================
-        // Inicialización de los sistemas de IA
-        // =============================================
-        document.addEventListener('DOMContentLoaded', () => {
-            // Iniciar sistemas de IA
-            const responsiveAI = new ResponsiveAI();
-            const adaptiveAI = new AdaptiveComponentsAI();
-            const behaviorAI = new UserBehaviorAI();
-            
-            // Observar cambios de tamaño para reoptimización
-            window.addEventListener('resize', () => {
-                new ResponsiveAI();
-                new AdaptiveComponentsAI();
-            });
-            
-            // Mostrar recomendaciones basadas en comportamiento
-            setTimeout(() => {
-                behaviorAI.getRecommendations();
-            }, 5000);
-        });
     </script>
 </body>
 </html>
