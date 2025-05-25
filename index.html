@@ -505,6 +505,245 @@
             background: #a00;
         }
         
+        /* Nuevos estilos para IA */
+        .ai-assistant {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            z-index: 1000;
+        }
+        
+        .ai-assistant-button {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: var(--rojo-carnicero);
+            color: white;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            transition: all 0.3s ease;
+        }
+        
+        .ai-assistant-button:hover {
+            transform: scale(1.1);
+        }
+        
+        .ai-assistant-chat {
+            position: absolute;
+            bottom: 80px;
+            right: 0;
+            width: 350px;
+            max-height: 500px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            display: none;
+            flex-direction: column;
+            overflow: hidden;
+        }
+        
+        .ai-assistant-chat.open {
+            display: flex;
+        }
+        
+        .ai-assistant-header {
+            padding: 1rem;
+            background: var(--negro-elegante);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .ai-assistant-messages {
+            flex-grow: 1;
+            padding: 1rem;
+            overflow-y: auto;
+        }
+        
+        .ai-assistant-input {
+            display: flex;
+            padding: 1rem;
+            border-top: 1px solid #eee;
+        }
+        
+        .ai-assistant-input input {
+            flex-grow: 1;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 5px 0 0 5px;
+            border-right: none;
+        }
+        
+        .ai-assistant-input button {
+            background: var(--rojo-carnicero);
+            color: white;
+            border: none;
+            padding: 0 1rem;
+            border-radius: 0 5px 5px 0;
+            cursor: pointer;
+        }
+        
+        .assistant-message {
+            margin-bottom: 1rem;
+            padding: 0.8rem;
+            border-radius: 10px;
+            max-width: 80%;
+        }
+        
+        .assistant-message.bot {
+            background: #f0f0f0;
+            align-self: flex-start;
+        }
+        
+        .assistant-message.user {
+            background: var(--rojo-carnicero);
+            color: white;
+            align-self: flex-end;
+        }
+        
+        .search-bar {
+            position: relative;
+            flex-grow: 1;
+            margin: 0 2rem;
+            max-width: 500px;
+        }
+        
+        .search-bar input {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            border-radius: 30px;
+            border: 1px solid #ddd;
+            font-size: 1rem;
+        }
+        
+        .search-bar button {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: var(--rojo-carnicero);
+            cursor: pointer;
+        }
+        
+        .search-results {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 100%;
+            background: white;
+            border-radius: 0 0 15px 15px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            max-height: 300px;
+            overflow-y: auto;
+            display: none;
+            z-index: 100;
+        }
+        
+        .search-result-item {
+            padding: 1rem;
+            border-bottom: 1px solid #eee;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        
+        .search-result-item:hover {
+            background: #f9f9f9;
+        }
+        
+        .product-reviews {
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px dashed #eee;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .stars {
+            color: #ffc107;
+            font-size: 0.9rem;
+        }
+        
+        .sentiment-indicator {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            margin-left: 5px;
+        }
+        
+        .sentiment-indicator.positive {
+            background: #4CAF50;
+        }
+        
+        .sentiment-indicator.neutral {
+            background: #FFC107;
+        }
+        
+        .sentiment-indicator.negative {
+            background: #F44336;
+        }
+        
+        .view-reviews {
+            background: none;
+            border: none;
+            color: var(--rojo-carnicero);
+            font-size: 0.8rem;
+            cursor: pointer;
+            text-decoration: underline;
+        }
+        
+        .review-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            z-index: 1004;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .review-content {
+            background: white;
+            width: 90%;
+            max-width: 600px;
+            max-height: 80vh;
+            overflow-y: auto;
+            border-radius: 10px;
+            padding: 2rem;
+        }
+        
+        .review-chart {
+            width: 100%;
+            height: 200px;
+            margin: 1rem 0;
+            background: #f9f9f9;
+            border-radius: 5px;
+        }
+        
+        .loyalty-badge {
+            position: fixed;
+            bottom: 1rem;
+            left: 1rem;
+            background: var(--negro-elegante);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 30px;
+            z-index: 999;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
         @media (max-width: 992px) {
             .hero-title {
                 font-size: 3rem;
@@ -520,6 +759,10 @@
             
             .smart-menu {
                 gap: 1.5rem;
+            }
+            
+            .search-bar {
+                margin: 1rem 0;
             }
         }
         
@@ -551,6 +794,12 @@
             .logo-meat {
                 font-size: 1.8rem;
             }
+            
+            .search-bar {
+                order: 3;
+                width: 100%;
+                margin: 1rem 0;
+            }
         }
         
         @media (max-width: 576px) {
@@ -569,6 +818,11 @@
             .cart-ai {
                 width: 100%;
                 max-width: none;
+            }
+            
+            .ai-assistant-chat {
+                width: 90%;
+                right: 5%;
             }
         }
         
@@ -615,6 +869,13 @@
             <div class="logo-meat">
                 <i class="fas fa-bone"></i> PrimeMeat
             </div>
+            
+            <div class="search-bar">
+                <input type="text" placeholder="Buscar cortes..." id="searchInput">
+                <button id="searchButton"><i class="fas fa-search"></i></button>
+                <div class="search-results"></div>
+            </div>
+            
             <button class="mobile-menu-button" id="mobileMenuButton">
                 <i class="fas fa-bars"></i>
             </button>
@@ -658,6 +919,19 @@
                             <button class="add-to-cart" data-id="1">Añadir</button>
                         </div>
                     </div>
+                    <div class="product-reviews">
+                        <div class="review-summary">
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                                <i class="far fa-star"></i>
+                            </div>
+                            <span class="sentiment-indicator positive"></span>
+                        </div>
+                        <button class="view-reviews">Ver análisis</button>
+                    </div>
                 </div>
             </div>
 
@@ -675,6 +949,19 @@
                         <div class="product-actions">
                             <button class="add-to-cart" data-id="2">Añadir</button>
                         </div>
+                    </div>
+                    <div class="product-reviews">
+                        <div class="review-summary">
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="far fa-star"></i>
+                            </div>
+                            <span class="sentiment-indicator positive"></span>
+                        </div>
+                        <button class="view-reviews">Ver análisis</button>
                     </div>
                 </div>
             </div>
@@ -695,6 +982,19 @@
                             <button class="add-to-cart" data-id="3">Añadir</button>
                         </div>
                     </div>
+                    <div class="product-reviews">
+                        <div class="review-summary">
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                            <span class="sentiment-indicator positive"></span>
+                        </div>
+                        <button class="view-reviews">Ver análisis</button>
+                    </div>
                 </div>
             </div>
 
@@ -712,6 +1012,19 @@
                         <div class="product-actions">
                             <button class="add-to-cart" data-id="4">Añadir</button>
                         </div>
+                    </div>
+                    <div class="product-reviews">
+                        <div class="review-summary">
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <span class="sentiment-indicator positive"></span>
+                        </div>
+                        <button class="view-reviews">Ver análisis</button>
                     </div>
                 </div>
             </div>
@@ -731,6 +1044,19 @@
                             <button class="add-to-cart" data-id="5">Añadir</button>
                         </div>
                     </div>
+                    <div class="product-reviews">
+                        <div class="review-summary">
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="far fa-star"></i>
+                                <i class="far fa-star"></i>
+                            </div>
+                            <span class="sentiment-indicator neutral"></span>
+                        </div>
+                        <button class="view-reviews">Ver análisis</button>
+                    </div>
                 </div>
             </div>
 
@@ -749,6 +1075,19 @@
                         <div class="product-actions">
                             <button class="add-to-cart" data-id="6">Añadir</button>
                         </div>
+                    </div>
+                    <div class="product-reviews">
+                        <div class="review-summary">
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                                <i class="far fa-star"></i>
+                                <i class="far fa-star"></i>
+                            </div>
+                            <span class="sentiment-indicator neutral"></span>
+                        </div>
+                        <button class="view-reviews">Ver análisis</button>
                     </div>
                 </div>
             </div>
@@ -814,6 +1153,27 @@
         </div>
     </div>
 
+    <div class="ai-assistant">
+        <button class="ai-assistant-button">
+            <i class="fas fa-robot"></i>
+        </button>
+        <div class="ai-assistant-chat">
+            <div class="ai-assistant-header">
+                <h4>Asistente de PrimeMeat</h4>
+                <button class="close-assistant"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="ai-assistant-messages">
+                <div class="assistant-message bot">
+                    <p>¡Hola! Soy tu asistente de PrimeMeat. ¿En qué puedo ayudarte hoy?</p>
+                </div>
+            </div>
+            <div class="ai-assistant-input">
+                <input type="text" placeholder="Pregunta sobre nuestros productos...">
+                <button><i class="fas fa-paper-plane"></i></button>
+            </div>
+        </div>
+    </div>
+
     <script>
         let cart = [];
         const cartButton = document.getElementById('cartButton');
@@ -834,7 +1194,39 @@
         const customerName = document.getElementById('customerName');
         const customerPhone = document.getElementById('customerPhone');
         const referralCode = document.getElementById('referralCode');
+        const assistantButton = document.querySelector('.ai-assistant-button');
+        const assistantChat = document.querySelector('.ai-assistant-chat');
+        const closeAssistant = document.querySelector('.close-assistant');
+        const assistantInput = document.querySelector('.ai-assistant-input input');
+        const assistantSend = document.querySelector('.ai-assistant-input button');
+        const assistantMessages = document.querySelector('.ai-assistant-messages');
+        const searchInput = document.getElementById('searchInput');
+        const searchButton = document.getElementById('searchButton');
+        const searchResults = document.querySelector('.search-results');
+        const viewReviewsButtons = document.querySelectorAll('.view-reviews');
 
+        // Base de datos de productos para búsqueda
+        const productsDB = [
+            { id: 1, name: "Costilla", tags: ["costilla", "premium", "hueso"] },
+            { id: 2, name: "Chicharrón", tags: ["chicharron", "frito", "crujiente"] },
+            { id: 3, name: "Carne", tags: ["res", "vaca", "ternera"] },
+            { id: 4, name: "Lomo", tags: ["lomo", "premium", "blando"] },
+            { id: 5, name: "Pezuña", tags: ["pezuña", "hueso", "caldo"] },
+            { id: 6, name: "Chuleta de Cerdo", tags: ["cerdo", "chuleta", "hueso"] }
+        ];
+
+        // Respuestas del asistente
+        const responses = {
+            "hola": "¡Hola! Soy el asistente de PrimeMeat. ¿En qué puedo ayudarte hoy?",
+            "precio": "Todos nuestros precios son competitivos y varían según el corte. ¿Te interesa algún producto en particular?",
+            "envío": "Realizamos entregas en 24-48 horas. ¿Quieres saber el costo para tu dirección?",
+            "recomendación": "Basado en tus compras anteriores, te recomendaría nuestro lomo premium. ¡Es nuestro producto mejor valorado!",
+            "carne": "Nuestra carne proviene de ganado criado en pastoreo libre, con los más altos estándares de calidad.",
+            "pago": "Aceptamos todos los medios de pago: efectivo, tarjetas débito/crédito y transferencias bancarias.",
+            "contacto": "Puedes contactarnos al 324 645 3591 o visitarnos en nuestra tienda física en Medellín."
+        };
+
+        // Funcionalidad del carrito
         document.querySelectorAll('.add-to-cart').forEach(button => {
             button.addEventListener('click', () => {
                 const productCard = button.closest('.product-card');
@@ -927,43 +1319,395 @@
             confirmationModal.style.display = 'none';
         });
 
-       confirmOrder.addEventListener('click', () => {
-    if (!customerName.value.trim() || !customerPhone.value.trim()) {
-        showNotification('Por favor completa los campos obligatorios');
-        return;
-    }
+        confirmOrder.addEventListener('click', () => {
+            if (!customerName.value.trim() || !customerPhone.value.trim()) {
+                showNotification('Por favor completa los campos obligatorios');
+                return;
+            }
 
-    // Formato simplificado del mensaje
-    let message = `*NUEVO PEDIDO*\n\n`;
-    message += `*Cliente:* ${customerName.value.trim()}\n`;
-    message += `*Teléfono:* ${customerPhone.value.trim()}\n\n`;
-    message += `*Productos:*\n`;
-    
-    cart.forEach(item => {
-        message += `- ${item.title} (${item.quantity} x $${item.price.toLocaleString()})\n`;
-    });
-    
-    const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-    message += `\n*Total:* $${total.toLocaleString()}\n\n`;
-    message += `¡Gracias por su pedido!`;
-    
-    const encodedMessage = encodeURIComponent(message);
-    const whatsappUrl = `https://wa.me/573246453591?text=${encodedMessage}`;
-    
-    // Abrir en nueva pestaña
-    window.open(whatsappUrl, '_blank');
-    
-    // Limpiar carrito y formulario
-    setTimeout(() => {
-        cart = [];
-        updateCart();
-        cartAI.classList.remove('open');
-        confirmationModal.style.display = 'none';
-        customerName.value = '';
-        customerPhone.value = '';
-        referralCode.value = '';
-    }, 1000);
-});
+            // Validación simple de teléfono
+            const phone = customerPhone.value.trim();
+            if(phone.length < 10) {
+                showNotification('El número de teléfono parece incompleto');
+                return;
+            }
+
+            // Crear mensaje optimizado para WhatsApp
+            let message = `*NUEVO PEDIDO PRIMEMEAT* 🥩\n\n`;
+            message += `*Cliente:* ${customerName.value.trim()}\n`;
+            message += `*Teléfono:* ${phone}\n`;
+            
+            if(referralCode.value.trim()) {
+                message += `*Código Referido:* ${referralCode.value.trim()}\n`;
+            }
+            
+            message += `\n*Pedido:*\n`;
+            
+            // Agrupar productos similares
+            const groupedCart = cart.reduce((acc, item) => {
+                const existing = acc.find(i => i.title === item.title);
+                if(existing) {
+                    existing.quantity += item.quantity;
+                } else {
+                    acc.push({...item});
+                }
+                return acc;
+            }, []);
+            
+            groupedCart.forEach(item => {
+                message += `➡ ${item.title} (${item.quantity} x $${item.price.toLocaleString()})\n`;
+            });
+            
+            const total = groupedCart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            message += `\n*Total:* $${total.toLocaleString()}\n\n`;
+            message += `📍 *Dirección de envío:* (por confirmar)\n`;
+            message += `⏰ *Horario preferido:* (por confirmar)\n\n`;
+            message += `¿Podrías confirmar disponibilidad y enviar detalles de pago? ¡Gracias!`;
+            
+            const encodedMessage = encodeURIComponent(message);
+            const whatsappUrl = `https://wa.me/573246453591?text=${encodedMessage}`;
+            
+            // Guardar en historial
+            const orderHistory = JSON.parse(localStorage.getItem('orderHistory') || [];
+            orderHistory.push({
+                date: new Date().toISOString(),
+                items: groupedCart,
+                total,
+                customer: customerName.value.trim()
+            });
+            localStorage.setItem('orderHistory', JSON.stringify(orderHistory));
+            
+            // Abrir WhatsApp
+            window.open(whatsappUrl, '_blank');
+            
+            // Limpiar y cerrar
+            setTimeout(() => {
+                cart = [];
+                updateCart();
+                cartAI.classList.remove('open');
+                confirmationModal.style.display = 'none';
+                customerName.value = '';
+                customerPhone.value = '';
+                referralCode.value = '';
+                
+                // Mostrar mensaje de agradecimiento
+                showNotification('¡Pedido enviado! Gracias por tu compra');
+            }, 500);
+        });
+
+        // Asistente de IA
+        function addAssistantMessage(text, isUser = false) {
+            const message = document.createElement('div');
+            message.className = `assistant-message ${isUser ? 'user' : 'bot'}`;
+            message.innerHTML = `<p>${text}</p>`;
+            assistantMessages.appendChild(message);
+            assistantMessages.scrollTop = assistantMessages.scrollHeight;
+        }
+
+        assistantButton.addEventListener('click', () => {
+            assistantChat.classList.toggle('open');
+        });
+
+        closeAssistant.addEventListener('click', () => {
+            assistantChat.classList.remove('open');
+        });
+
+        assistantSend.addEventListener('click', () => {
+            const message = assistantInput.value.trim().toLowerCase();
+            if(message) {
+                addAssistantMessage(message, true);
+                assistantInput.value = '';
+                
+                // Respuesta simple basada en palabras clave
+                let response = "Gracias por tu mensaje. Un representante te responderá pronto.";
+                for(const [keyword, reply] of Object.entries(responses)) {
+                    if(message.includes(keyword)) {
+                        response = reply;
+                        break;
+                    }
+                }
+                
+                setTimeout(() => {
+                    addAssistantMessage(response);
+                }, 1000);
+            }
+        });
+
+        // Búsqueda inteligente
+        function searchProducts(query) {
+            if(!query.trim()) return [];
+            
+            return productsDB.filter(product => 
+                product.name.toLowerCase().includes(query.toLowerCase()) ||
+                product.tags.some(tag => tag.includes(query.toLowerCase()))
+            );
+        }
+
+        function showSearchResults(results) {
+            searchResults.innerHTML = '';
+            
+            if(results.length === 0) {
+                searchResults.innerHTML = '<div class="search-result-item">No se encontraron resultados</div>';
+            } else {
+                results.forEach(product => {
+                    const item = document.createElement('div');
+                    item.className = 'search-result-item';
+                    item.textContent = product.name;
+                    item.addEventListener('click', () => {
+                        document.querySelector(`[data-id="${product.id}"]`).scrollIntoView({
+                            behavior: 'smooth'
+                        });
+                        searchResults.style.display = 'none';
+                        searchInput.value = '';
+                    });
+                    searchResults.appendChild(item);
+                });
+            }
+            
+            searchResults.style.display = 'block';
+        }
+
+        searchInput.addEventListener('input', (e) => {
+            const results = searchProducts(e.target.value);
+            showSearchResults(results);
+        });
+
+        searchInput.addEventListener('focus', () => {
+            if(searchInput.value.trim()) {
+                const results = searchProducts(searchInput.value);
+                showSearchResults(results);
+            }
+        });
+
+        document.addEventListener('click', (e) => {
+            if(!e.target.closest('.search-bar')) {
+                searchResults.style.display = 'none';
+            }
+        });
+
+        // Análisis de reseñas
+        viewReviewsButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const modal = document.createElement('div');
+                modal.className = 'review-modal';
+                modal.innerHTML = `
+                    <div class="review-content">
+                        <h3>Análisis de Reseñas</h3>
+                        <p>Los clientes opinan sobre este producto:</p>
+                        
+                        <div class="review-chart">
+                            <!-- Aquí iría un gráfico generado con Chart.js o similar -->
+                            <canvas id="sentimentChart" width="400" height="200"></canvas>
+                        </div>
+                        
+                        <div class="key-phrases">
+                            <h4>Frases clave detectadas:</h4>
+                            <ul>
+                                <li>"Muy tierna y jugosa" (positivo)</li>
+                                <li>"Buen precio para la calidad" (positivo)</li>
+                                <li>"Un poco grasosa para mi gusto" (neutral)</li>
+                            </ul>
+                        </div>
+                        
+                        <button class="close-reviews" style="margin-top: 1rem; padding: 0.5rem 1rem; background: var(--rojo-carnicero); color: white; border: none; border-radius: 5px;">Cerrar</button>
+                    </div>
+                `;
+                
+                document.body.appendChild(modal);
+                modal.style.display = 'flex';
+                
+                // Simular gráfico de sentimiento
+                setTimeout(() => {
+                    const canvas = modal.querySelector('#sentimentChart');
+                    if(canvas) {
+                        const ctx = canvas.getContext('2d');
+                        ctx.fillStyle = '#4CAF50';
+                        ctx.fillRect(20, 180, 100, -120); // Positivas
+                        ctx.fillStyle = '#FFC107';
+                        ctx.fillRect(140, 180, 100, -40); // Neutrales
+                        ctx.fillStyle = '#F44336';
+                        ctx.fillRect(260, 180, 100, -20); // Negativas
+                        
+                        ctx.fillStyle = '#000';
+                        ctx.font = '12px Arial';
+                        ctx.fillText('Positivas (60%)', 20, 200);
+                        ctx.fillText('Neutrales (20%)', 140, 200);
+                        ctx.fillText('Negativas (10%)', 260, 200);
+                    }
+                }, 100);
+                
+                modal.querySelector('.close-reviews').addEventListener('click', () => {
+                    modal.remove();
+                });
+            });
+        });
+
+        // Realidad Aumentada
+        arButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const model = button.getAttribute('data-model');
+                arViewer.style.display = 'flex';
+                
+                // Simulación de carga de modelo 3D
+                setTimeout(() => {
+                    const arContainer = document.querySelector('.ar-container');
+                    arContainer.innerHTML = `
+                        <div style="color: white; text-align: center;">
+                            <i class="fas fa-hamburger" style="font-size: 5rem; margin-bottom: 1rem;"></i>
+                            <h3>${model.toUpperCase()} EN TU ESPACIO</h3>
+                            <p>Mueve tu dispositivo para escanear superficies</p>
+                            <button style="margin-top: 1rem; padding: 0.8rem 1.5rem; background: var(--rojo-carnicero); color: white; border: none; border-radius: 5px;" id="placeObject">
+                                Colocar Objeto
+                            </button>
+                        </div>
+                    `;
+                    
+                    document.getElementById('placeObject').addEventListener('click', () => {
+                        arContainer.innerHTML = `
+                            <div style="color: white; text-align: center;">
+                                <i class="fas fa-check-circle" style="font-size: 5rem; margin-bottom: 1rem; color: #4CAF50;"></i>
+                                <h3>¡LISTO!</h3>
+                                <p>Ahora puedes ver cómo se vería este producto en tu cocina</p>
+                                <div style="display: flex; justify-content: center; margin-top: 1rem;">
+                                    <button style="padding: 0.8rem 1.5rem; background: #333; color: white; border: none; border-radius: 5px; margin: 0 0.5rem;" id="changeColor">
+                                        Cambiar Color
+                                    </button>
+                                    <button style="padding: 0.8rem 1.5rem; background: var(--rojo-carnicero); color: white; border: none; border-radius: 5px; margin: 0 0.5rem;" id="addToCartAR">
+                                        Añadir al Carrito
+                                    </button>
+                                </div>
+                            </div>
+                        `;
+                        
+                        document.getElementById('addToCartAR').addEventListener('click', () => {
+                            const productCard = button.closest('.product-card');
+                            const productId = productCard.querySelector('.add-to-cart').getAttribute('data-id');
+                            const productTitle = productCard.querySelector('.product-title').textContent;
+                            
+                            showNotification(`${productTitle} añadido desde la vista AR`);
+                            arViewer.style.display = 'none';
+                        });
+                    });
+                }, 1500);
+            });
+        });
+
+        // Sistema de fidelización
+        function checkLoyaltyStatus() {
+            const orderHistory = JSON.parse(localStorage.getItem('orderHistory') || '[]');
+            if(orderHistory.length > 0) {
+                const totalSpent = orderHistory.reduce((sum, order) => sum + order.total, 0);
+                
+                let loyaltyLevel = 'Nuevo';
+                let discount = 0;
+                
+                if(totalSpent > 100000) {
+                    loyaltyLevel = 'Oro';
+                    discount = 10;
+                } else if(totalSpent > 50000) {
+                    loyaltyLevel = 'Plata';
+                    discount = 5;
+                }
+                
+                // Mostrar badge de fidelización
+                const loyaltyBadge = document.createElement('div');
+                loyaltyBadge.className = 'loyalty-badge';
+                loyaltyBadge.innerHTML = `
+                    <i class="fas fa-crown"></i> Cliente ${loyaltyLevel} ${discount > 0 ? `(${discount}% descuento)` : ''}
+                `;
+                loyaltyBadge.style.background = loyaltyLevel === 'Oro' ? 'linear-gradient(135deg, #FFD700, #C5B358)' : 
+                                              loyaltyLevel === 'Plata' ? 'linear-gradient(135deg, #C0C0C0, #A6A6A6)' : 
+                                              'var(--negro-elegante)';
+                document.body.appendChild(loyaltyBadge);
+                
+                // Aplicar descuento si corresponde
+                if(discount > 0) {
+                    document.querySelectorAll('.product-price').forEach(priceElement => {
+                        const originalPrice = parseFloat(priceElement.textContent.replace(/[^0-9.-]+/g,""));
+                        const discountedPrice = originalPrice * (1 - discount/100);
+                        priceElement.innerHTML = `
+                            <span style="text-decoration: line-through; color: #999; font-size: 0.9em;">$${originalPrice.toLocaleString()}</span>
+                            <span> $${discountedPrice.toLocaleString()}</span>
+                        `;
+                    });
+                }
+            }
+        }
+
+        // Recomendaciones personalizadas
+        function recommendProducts() {
+            if(localStorage.getItem('orderHistory')) {
+                const history = JSON.parse(localStorage.getItem('orderHistory'));
+                const mostBought = history.reduce((acc, order) => {
+                    order.items.forEach(item => {
+                        acc[item.id] = (acc[item.id] || 0) + item.quantity;
+                    });
+                    return acc;
+                }, {});
+                
+                const recommendedId = Object.keys(mostBought).reduce((a, b) => 
+                    mostBought[a] > mostBought[b] ? a : b
+                );
+                
+                // Destacar producto recomendado
+                const recommendedProduct = document.querySelector(`[data-id="${recommendedId}"]`);
+                if(recommendedProduct) {
+                    const card = recommendedProduct.closest('.product-card');
+                    card.style.boxShadow = '0 0 20px rgba(200,0,0,0.5)';
+                    card.style.position = 'relative';
+                    
+                    const recommendationBadge = document.createElement('div');
+                    recommendationBadge.className = 'product-badge';
+                    recommendationBadge.textContent = 'RECOMENDADO';
+                    recommendationBadge.style.backgroundColor = '#4CAF50';
+                    card.querySelector('.product-media').appendChild(recommendationBadge);
+                }
+            }
+        }
+
+        // Análisis de comportamiento del usuario
+        function trackUserBehavior() {
+            const behaviorData = {
+                viewedProducts: [],
+                timeOnPage: 0,
+                cartActions: 0
+            };
+            
+            // Track productos vistos
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if(entry.isIntersecting) {
+                        const productId = entry.target.querySelector('.add-to-cart')?.getAttribute('data-id');
+                        if(productId && !behaviorData.viewedProducts.includes(productId)) {
+                            behaviorData.viewedProducts.push(productId);
+                        }
+                    }
+                });
+            }, { threshold: 0.5 });
+            
+            document.querySelectorAll('.product-card').forEach(card => {
+                observer.observe(card);
+            });
+            
+            // Track tiempo en página
+            setInterval(() => {
+                behaviorData.timeOnPage += 1;
+            }, 1000);
+            
+            // Track acciones en carrito
+            document.addEventListener('click', (e) => {
+                if(e.target.closest('.add-to-cart') || e.target.closest('.remove-item')) {
+                    behaviorData.cartActions += 1;
+                }
+            });
+            
+            // Enviar datos al cerrar la página (simulado)
+            window.addEventListener('beforeunload', () => {
+                console.log('Datos de comportamiento:', behaviorData);
+            });
+        }
+
+        // Funciones auxiliares
         function showNotification(message) {
             const notification = document.createElement('div');
             notification.className = 'notification';
@@ -974,7 +1718,12 @@
                 notification.remove();
             }, 3000);
         }
-        
+
+        function isMobile() {
+            return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+        }
+
+        // Inicialización
         if (localStorage.getItem('cart')) {
             cart = JSON.parse(localStorage.getItem('cart'));
             updateCart();
@@ -998,19 +1747,15 @@
             });
         });
         
-        arButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                const model = button.getAttribute('data-model');
-                arViewer.style.display = 'flex';
-            });
-        });
-        
         closeAR.addEventListener('click', () => {
             arViewer.style.display = 'none';
         });
         
+        // Efecto 3D en tarjetas de producto
         document.querySelectorAll('.product-card').forEach(card => {
             card.addEventListener('mousemove', (e) => {
+                if(isMobile()) return;
+                
                 const x = e.clientX - card.getBoundingClientRect().left;
                 const y = e.clientY - card.getBoundingClientRect().top;
                 
@@ -1028,16 +1773,20 @@
             });
         });
         
-        function isMobile() {
-            return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-        }
-        
+        // Desactivar efectos 3D en móviles
         if (isMobile()) {
             document.querySelectorAll('.product-card').forEach(card => {
                 card.style.transform = 'none';
                 card.style.transition = 'none';
             });
         }
+
+        // Inicializar funciones de IA al cargar la página
+        window.addEventListener('DOMContentLoaded', () => {
+            checkLoyaltyStatus();
+            recommendProducts();
+            trackUserBehavior();
+        });
     </script>
 </body>
 </html>
