@@ -933,7 +933,7 @@
                 return;
             }
 
-            let message = `*📋 PEDIDO PRIMEMEAT PREMIUM* 🚀\n\n`;
+            let message = `*📋 NUEVO PEDIDO* 🚀\n\n`;
             message += `*👤 Cliente:* ${customerName.value.trim()}\n`;
             message += `*📞 Teléfono:* ${customerPhone.value.trim()}\n`;
             
@@ -941,15 +941,13 @@
                 message += `*🎟 Código Referido:* ${referralCode.value.trim()}\n`;
             }
             
-            message += `\n*🍖 DETALLE DEL PEDIDO:*\n`;
-            message += `══════════════════\n`;
+            message += `\n*🍖 PRODUCTOS:*\n`;
             
             cart.forEach(item => {
-                message += `✔ *${item.title}* \n   - Cantidad: ${item.quantity}\n   - Precio: $${item.price.toLocaleString()}\n   - Subtotal: $${(item.price * item.quantity).toLocaleString()}\n\n`;
+                message += `✔ *${item.title}* \n   - Cantidad: ${item.quantity}\n   - Precio: $${item.price.toLocaleString()}\n
             });
             
             const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-            message += `══════════════════\n`;
             message += `*💰 TOTAL A PAGAR:* $${total.toLocaleString()}\n\n`;
             message += `*📌 Notas adicionales:* \n_En breve nos comunicaremos para confirmar su pedido_\n\n`;
             message += `¡Gracias por preferir *PrimeMeat Premium*! 🎉`;
