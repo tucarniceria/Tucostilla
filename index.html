@@ -11,7 +11,17 @@
             --negro-elegante: #1a1a1a;
             --blanco-hueso: #f9f5f0;
         }
-        
+
+        /* Efecto de resaltado */
+@keyframes highlight {
+    0% { background-color: transparent; }
+    20% { background-color: rgba(255, 255, 255, 0.3); }
+    100% { background-color: transparent; }
+}
+
+.highlight-section {
+    animation: highlight 1.5s ease-out;
+}
         * {
             margin: 0;
             padding: 0;
@@ -425,6 +435,7 @@
             z-index: 1003;
             animation: slideIn 0.3s ease-out;
         }
+
         
         @keyframes slideIn {
             from { bottom: -100px; opacity: 0; }
@@ -664,7 +675,7 @@
         <div class="hero-content">
             <h1 class="hero-title">CARNE QUE INSPIRA</h1>
             <p class="hero-subtitle"> Más sabor, menos gastos </p>
-            <button class="add-to-cart" style="padding: 1rem 2rem; font-size: 1.2rem;">EXPLORAR CORTES</button>
+           <button class="add-to-cart" style="padding: 1rem 2rem; font-size: 1.2rem;">EXPLORAR CORTES</button>
         </div>
     </section>
 
@@ -925,6 +936,7 @@
         const customerName = document.getElementById('customerName');
         const customerPhone = document.getElementById('customerPhone');
         const referralCode = document.getElementById('referralCode');
+        const explorarCortesBtn = document.getElementById('explorarCortesBtn');
 
         document.querySelectorAll('.add-to-cart').forEach(button => {
             button.addEventListener('click', () => {
@@ -935,6 +947,23 @@
                 const productImage = productCard.querySelector('.product-image').src;
                 
                 const existingItem = cart.find(item => item.id === productId);
+                // Desplazamiento al hacer clic en "EXPLORAR CORTES"
+explorarCortesBtn.addEventListener('click', () => {
+    const seccionProductos = document.getElementById('cortes');
+    
+    seccionProductos.scrollIntoView({
+        behavior: 'smooth'
+    });
+    
+    // Activar animación
+    seccionProductos.classList.add('highlight-section');
+    
+    // Eliminar la clase después de la animación
+    setTimeout(() => {
+        seccionProductos.classList.remove('highlight-section');
+    }, 1500);
+});
+                
                 
                 if (existingItem) {
                     existingItem.quantity += 1;
@@ -1074,6 +1103,8 @@
         cartButton.addEventListener('click', () => {
             cartAI.classList.add('open');
         });
+        
+        
         
         closeCart.addEventListener('click', () => {
             cartAI.classList.remove('open');
